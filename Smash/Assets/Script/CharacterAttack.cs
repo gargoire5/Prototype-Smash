@@ -11,6 +11,7 @@ public abstract class CharacterAttack : MonoBehaviour
     protected InputAction attackAction;
     protected InputAction skillAttackAction;
     protected InputAction ultimeAttackAction;
+    protected InputAction paradeAction; 
 
     public float basicAttackRate = 0.2f;
     protected float basicAttackCooldown;
@@ -28,6 +29,7 @@ public abstract class CharacterAttack : MonoBehaviour
         attackAction = playerInput.actions["Attack"];
         skillAttackAction = playerInput.actions["Skill"];
         ultimeAttackAction = playerInput.actions["Ultimate"];
+        paradeAction = playerInput.actions["Parade"];
 
     }
     
@@ -85,4 +87,5 @@ public abstract class CharacterAttack : MonoBehaviour
     protected abstract void ChargeAttack();
     protected abstract void SkillAttack();
     protected abstract void UltimeAttack();
+    protected abstract void ParadeAction();
 }
