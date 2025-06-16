@@ -1,0 +1,59 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerController : MonoBehaviour
+{
+    public InputActionReference MoveAction;
+    public InputActionReference JumpAction;
+
+    public float speed = 5f;
+
+    public Rigidbody rb;
+
+    private Vector2 inputDirection;
+
+    public float bounceForce = 10f;
+
+    public float maxHeals = 10;
+    public float heals;
+
+    void Start()
+    {
+        MoveAction.action.Enable();
+        JumpAction.action.Enable();
+        heals = maxHeals;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        inputDirection = MoveAction.action.ReadValue<Vector2>();
+    }
+
+    void FixedUpdate()
+    {
+        MovePlayer();
+        Jump();
+    }
+
+
+    private void MovePlayer()
+    {
+        Vector3 move = transform.forward * inputDirection.x;
+        Vector3 velocity = move * speed;
+        Vector3 rbVelocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
+        rb.velocity = rbVelocity;
+    }
+
+    void Jump()
+    {
+        if (JumpAction.action.IsPressed())
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
+        }
+    }
+}
