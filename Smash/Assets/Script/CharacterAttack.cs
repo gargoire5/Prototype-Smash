@@ -15,7 +15,7 @@ public abstract class CharacterAttack : MonoBehaviour
     public float basicAttackRate = 0.2f;
     protected float basicAttackCooldown;
 
-    public float chargeTimeTreshold = 1.5f;
+    public float chargeTimeTreshold = 0.5f;
     protected float holdTime = 0f;
     protected bool isHoldingAttack = false;
 
