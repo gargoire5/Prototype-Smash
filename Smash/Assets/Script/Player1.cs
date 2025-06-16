@@ -23,4 +23,9 @@ public class Player1 : CharacterAttack
     {
 
     }
+
+    protected override void ParadeAction()
+    {
+
+    }
 }
