@@ -20,12 +20,20 @@ public class PlayerController : MonoBehaviour
     public float maxHeals = 10;
     public float heals;
 
+    public int numJump = 3;
+
     void Start()
     {
         MoveAction.action.Enable();
         JumpAction.action.Enable();
         heals = maxHeals;
     }
+
+    private void Awake()
+    {
+        JumpAction.action.started += Jump;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -36,7 +44,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
-        Jump();
     }
 
 
@@ -48,12 +55,13 @@ public class PlayerController : MonoBehaviour
         rb.velocity = rbVelocity;
     }
 
-    void Jump()
+    void Jump(InputAction.CallbackContext obj)
     {
-        if (JumpAction.action.IsPressed())
+        if (numJump > 0)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
+            numJump--;
         }
     }
 }
