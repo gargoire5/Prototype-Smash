@@ -803,6 +803,7 @@ MonoBehaviour:
     m_Flags: 0
   isHoldingAttack: 0
   canUseUltimate: 1
+  selectedHitbox: {fileID: 0}
   hitboxRight: {fileID: 2058455418}
   hitboxLeft: {fileID: 1639864366}
   hitboxUp: {fileID: 788533867}
@@ -824,7 +825,8 @@ MonoBehaviour:
   ultimateDelay: 30
   ultimateRate: 0.2
   ultimateDamage: 20
-  ultHitbox: {fileID: 2648783914185132204, guid: 2c19d1d7bd3f2194a8b11be8191f01d3, type: 3}
+  ultObject: {fileID: 2648783914185132204, guid: 2c19d1d7bd3f2194a8b11be8191f01d3, type: 3}
+  skillObject: {fileID: 737210374324018595, guid: 32bccc9f3620b924b9034a698bea595e, type: 3}
 --- !u!1 &1639864366
 GameObject:
   m_ObjectHideFlags: 0

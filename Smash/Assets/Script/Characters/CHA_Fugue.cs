@@ -5,34 +5,37 @@ using UnityEngine;
 
 public class CHA_Fugue : CharacterAttack
 {
-    //Fields to modify while making a character
-    [Header("Attack Data - Basic Attack")]
-    float basicAttackDuration = 0.2f;
-    float basicAttackDelay = 0.0f;
-    float basicAttackRate = 0.2f;
-    float basicAttackDamage = 5.0f;
-
-    [Header("Attack Data - Charge Attack")]
-    float chargeAttackDuration = 0.2f;
-    float chargeAttackDelay = 0.0f;
-    float chargeAttackRate = 0.2f;
-    float chargeAttackDamage = 7.5f;
-    float chargeTimeTreshold = 0.5f;
-
-    [Header("Attack Data - Skill")]
-    float skillDuration = 0.2f;
-    float skillDelay = 0.0f;
-    float skillRate = 0.2f;
-    float skillDamage = 10.0f;
-
-    [Header("Attack Data - Ultimate")]
-    float ultimateDuration = 0.2f;
-    float ultimateDelay = 0.0f;
-    float ultimateRate = 0.2f;
-    float ultimateDamage = 20.0f;
+    [SerializeField]
+    private GameObject ultObject;
 
     [SerializeField]
-    private GameObject ultHitbox;
+    private GameObject skillObject;
+
+    private void Start()
+    {
+        //Fields to modify when making a character
+
+        basicAttackDuration = 5168511.0f;
+        basicAttackDelay = 82749849.0f;
+        basicAttackRate = 0.2f;
+        basicAttackDamage = 5.0f;
+
+        chargeAttackDuration = 0.2f;
+        chargeAttackDelay = 0.0f;
+        chargeAttackRate = 0.2f;
+        chargeAttackDamage = 7.5f;
+        chargeTimeTreshold = 0.5f;
+
+        skillDuration = 0.2f;
+        skillDelay = 0.0f;
+        skillRate = 516516.0f;
+        skillDamage = 10.0f;
+
+        ultimateDuration = 5f;
+        ultimateDelay = 2846849.0f;
+        ultimateRate = 30.0f;
+        ultimateDamage = 20.0f;
+    }
 
     protected override void BasicAttack()
     {
@@ -47,7 +50,17 @@ public class CHA_Fugue : CharacterAttack
 
     protected override void SkillAttack()
     {
+        if (canUseSkill)
+        {
+            GameObject currentSkill = Instantiate(skillObject, selectedHitbox.transform.position, selectedHitbox.transform.rotation);
+            SKI_Fugue skill = currentSkill.GetComponent<SKI_Fugue>();
 
+            if (selectedHitbox == hitboxLeft)
+                skill.SetDirection(-1);
+            Destroy(currentSkill, 2.0f);
+
+            StartCoroutine(UseSkill());
+        }
     }
 
     protected override void UltimeAttack()
@@ -56,7 +69,7 @@ public class CHA_Fugue : CharacterAttack
 
         Debug.Log("Ultimate");
 
-        GameObject selectedHitbox = ultHitbox;
+        GameObject selectedHitbox = ultObject;
 
         StartCoroutine(UltAttack(selectedHitbox));
     }
