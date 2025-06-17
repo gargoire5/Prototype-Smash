@@ -601,8 +601,8 @@ GameObject:
   - component: {fileID: 1266544897}
   - component: {fileID: 1266544896}
   - component: {fileID: 1266544901}
-  - component: {fileID: 1266544904}
   - component: {fileID: 1266544900}
+  - component: {fileID: 1266544904}
   - component: {fileID: 1266544903}
   m_Layer: 0
   m_Name: Player 1
@@ -796,7 +796,7 @@ MonoBehaviour:
     m_Name: Jump
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 3b8c38f4-8d12-4663-a5c2-d5ce5824279b
+    m_Id: 24eea99c-d784-40c1-b7b2-7c153787198e
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

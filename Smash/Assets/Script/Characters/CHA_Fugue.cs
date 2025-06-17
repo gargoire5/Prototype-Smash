@@ -27,7 +27,7 @@ public class CHA_Fugue : CharacterAttack
 
     [Header("Attack Data - Ultimate")]
     float ultimateDuration = 0.2f;
-    float ultimateDelay = 30.0f;
+    float ultimateDelay = 0.0f;
     float ultimateRate = 0.2f;
     float ultimateDamage = 20.0f;
 
@@ -52,7 +52,7 @@ public class CHA_Fugue : CharacterAttack
 
     protected override void UltimeAttack()
     {
-        if (canUseUltimate) return;
+        if (!canUseUltimate) return;
 
         Debug.Log("Ultimate");
 
