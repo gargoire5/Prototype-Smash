@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework.Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,28 +8,47 @@ public abstract class CharacterAttack : MonoBehaviour
     protected InputAction attackAction;
     protected InputAction skillAttackAction;
     protected InputAction ultimeAttackAction;
-    protected InputAction paradeAction; 
+    protected InputAction paradeAction;
+    protected InputAction moveAction;
+    public InputAction jumpAction;
 
     public float basicAttackRate = 0.2f;
     protected float basicAttackCooldown;
 
     public float chargeTimeTreshold = 0.5f;
     protected float holdTime = 0f;
-    protected bool isHoldingAttack = false;
+    public bool isHoldingAttack = false;
 
     public bool canUseUltimate = false;
+
+    [Header("Hitboxes")]
+    public GameObject hitboxRight;
+    public GameObject hitboxLeft;
+    public GameObject hitboxUp;
+    public float attackDuration = 0.2f;
+    public bool isAttacking = false;
+
+    private Vector2 lastMoveDirection = Vector2.right;
 
     protected virtual void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
 
-        attackAction = playerInput.actions["Attack"];
-        skillAttackAction = playerInput.actions["Skill"];
-        ultimeAttackAction = playerInput.actions["Ultimate"];
-        paradeAction = playerInput.actions["Parade"];
+        if (playerInput == null)
+        {
+            Debug.LogError("PlayerInput est manquant sur " + gameObject.name);
+            return;
+        }
 
+        var actions = playerInput.actions;
+        attackAction = actions["Attack"];
+        skillAttackAction = actions["Skill"];
+        ultimeAttackAction = actions["Ultimate"];
+        paradeAction = actions["Parade"];
+        moveAction = actions["Move"];
+        jumpAction = actions["Jump"];
     }
-    
+
     protected virtual void OnEnable()
     {
         skillAttackAction.performed += _ => SkillAttack();
@@ -50,6 +66,7 @@ public abstract class CharacterAttack : MonoBehaviour
             isHoldingAttack = true;
             holdTime = 0f;
         };
+
         attackAction.canceled += _ =>
         {
             isHoldingAttack = false;
@@ -62,20 +79,28 @@ public abstract class CharacterAttack : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        skillAttackAction.performed -= _ => SkillAttack();
-        ultimeAttackAction.performed -= _ => UltimeAttack();
-        attackAction.started -= _ => { };
-        attackAction.canceled -= _ => { };
+        if (skillAttackAction != null) skillAttackAction.performed -= _ => SkillAttack();
+        if (ultimeAttackAction != null) ultimeAttackAction.performed -= _ => UltimeAttack();
+        if (attackAction != null)
+        {
+            attackAction.started -= _ => { };
+            attackAction.canceled -= _ => { };
+        }
     }
 
-    // Update is called once per frame
     protected virtual void Update()
     {
+        Vector2 moveInput = moveAction.ReadValue<Vector2>();
+        if (moveInput.x != 0)
+        {
+            lastMoveDirection = new Vector2(Mathf.Sign(moveInput.x), 0);
+        }
+
         if (isHoldingAttack)
         {
             holdTime += Time.deltaTime;
 
-            if(holdTime < chargeTimeTreshold && Time.time >= basicAttackCooldown)
+            if (holdTime < chargeTimeTreshold && Time.time >= basicAttackCooldown)
             {
                 basicAttackCooldown = Time.time + basicAttackRate;
                 BasicAttack();
@@ -83,7 +108,42 @@ public abstract class CharacterAttack : MonoBehaviour
         }
     }
 
-    protected abstract void BasicAttack();
+    protected virtual void BasicAttack()
+    {
+        if (isHoldingAttack) return;
+
+        Debug.Log("BasicAttack");
+
+        GameObject selectedHitbox = null;
+
+        if (jumpAction.IsPressed())
+            selectedHitbox = hitboxUp;
+        else if (lastMoveDirection.x > 0)
+            selectedHitbox = hitboxRight;
+        else
+            selectedHitbox = hitboxLeft;
+
+        StartCoroutine(ActivateHitboxCollider(selectedHitbox));
+    }
+
+    private IEnumerator ActivateHitboxCollider(GameObject hitbox)
+    {
+        Collider col = hitbox.GetComponent<Collider>();
+        if (col == null)
+        {
+            Debug.LogError("Pas de collider trouvé sur la hitbox : " + hitbox.name);
+            yield break;
+        }
+
+        col.enabled = true;
+        Debug.Log("Hitbox activée : " + hitbox.name);
+
+        yield return new WaitForSeconds(attackDuration);
+
+        col.enabled = false;
+        Debug.Log("Hitbox désactivée : " + hitbox.name);
+    }
+
     protected abstract void ChargeAttack();
     protected abstract void SkillAttack();
     protected abstract void UltimeAttack();
