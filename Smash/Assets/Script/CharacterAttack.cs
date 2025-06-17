@@ -98,7 +98,7 @@ public abstract class CharacterAttack : MonoBehaviour
             lastMoveDirection = new Vector2(Mathf.Sign(moveInput.x), 0);
         }
 
-        /*if (isHoldingAttack)
+        if (isHoldingAttack)
         {
             holdTime += Time.deltaTime;
 
@@ -107,7 +107,7 @@ public abstract class CharacterAttack : MonoBehaviour
                 basicAttackCooldown = Time.time + basicAttackRate;
                 BasicAttack();
             }
-        }*/
+        }
     }
 
     protected virtual void BasicAttack()
