@@ -15,7 +15,7 @@ public class DamageReceiver : MonoBehaviour
     public void TakeDamage(float amount, Vector3 direction)
     {
         damagePercent += amount;
-        float force = amount * (1 + damagePercent) * knockbackMultiplier;
+        float force = amount * (1 + damagePercent / 100) * knockbackMultiplier;
         rb.AddForce(direction.normalized * force, ForceMode.Impulse);
         Debug.Log($"{gameObject.name} a reçu {amount} dégâts. Total: {damagePercent}%");
     }

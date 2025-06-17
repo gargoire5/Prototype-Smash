@@ -53,7 +53,10 @@ public abstract class CharacterAttack : MonoBehaviour
     public float ultimateRate = 0.2f;
     public float ultimateDamage = 20.0f;
 
-
+    public bool IsTryingToAttackUp()
+    {
+        return jumpAction.IsPressed() && attackAction.IsPressed();
+    }
     protected virtual void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -169,12 +172,24 @@ public abstract class CharacterAttack : MonoBehaviour
             yield break;
         }
 
+        MeshRenderer renderer = hitbox.GetComponent<MeshRenderer>() ?? hitbox.GetComponentInChildren<MeshRenderer>();
+
+        if (renderer == null)
+        {
+            Debug.LogWarning("Aucun mesh");
+        }
+        col.enabled = true;
+        if (renderer != null)
+            renderer.enabled = true;
+
         Debug.Log("Collider trouvé, activation !");
         col.enabled = true;
 
         yield return new WaitForSeconds(basicAttackDuration);
 
         col.enabled = false;
+        if (renderer !=null)
+            renderer.enabled = false;
         Debug.Log("Collider désactivé : " + hitbox.name);
     }
 
