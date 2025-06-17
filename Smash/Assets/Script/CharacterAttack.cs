@@ -12,10 +12,8 @@ public abstract class CharacterAttack : MonoBehaviour
     protected InputAction moveAction;
     public InputAction jumpAction;
 
-    public float basicAttackRate = 0.2f;
     protected float basicAttackCooldown;
 
-    public float chargeTimeTreshold = 0.5f;
     protected float holdTime = 0f;
     public bool isHoldingAttack = false;
 
@@ -25,10 +23,36 @@ public abstract class CharacterAttack : MonoBehaviour
     public GameObject hitboxRight;
     public GameObject hitboxLeft;
     public GameObject hitboxUp;
-    public float attackDuration = 0.2f;
     public bool isAttacking = false;
 
     private Vector2 lastMoveDirection = Vector2.right;
+
+    //Fields to modify while making a character
+    [Header("Attack Data - Basic Attack")]
+    public float basicAttackDuration = 0.2f;
+    public float basicAttackDelay = 0.0f;
+    public float basicAttackRate = 0.2f;
+    public float basicAttackDamage = 5.0f;
+
+    [Header("Attack Data - Charge Attack")]
+    public float chargeAttackDuration = 0.2f;
+    public float chargeAttackDelay = 0.0f;
+    public float chargeAttackRate = 0.2f;
+    public float chargeAttackDamage = 7.5f;
+    public float chargeTimeTreshold = 0.5f;
+
+    [Header("Attack Data - Skill")]
+    public float skillDuration = 0.2f;
+    public float skillDelay = 0.0f;
+    public float skillRate = 0.2f;
+    public float skillDamage = 10.0f;
+
+    [Header("Attack Data - Ultimate")]
+    public float ultimateDuration = 0.2f;
+    public float ultimateDelay = 30.0f;
+    public float ultimateRate = 0.2f;
+    public float ultimateDamage = 20.0f;
+
 
     protected virtual void Awake()
     {
@@ -126,7 +150,7 @@ public abstract class CharacterAttack : MonoBehaviour
         StartCoroutine(ActivateHitboxCollider(selectedHitbox));
     }
 
-    private IEnumerator ActivateHitboxCollider(GameObject hitbox)
+    public IEnumerator ActivateHitboxCollider(GameObject hitbox)
     {
         Debug.Log($"Activation demandée pour : {hitbox?.name}");
 
@@ -135,6 +159,8 @@ public abstract class CharacterAttack : MonoBehaviour
             Debug.LogError("La hitbox est NULL !");
             yield break;
         }
+
+        yield return new WaitForSeconds(basicAttackDelay);
 
         Collider col = hitbox.GetComponent<Collider>();
         if (col == null)
@@ -146,7 +172,7 @@ public abstract class CharacterAttack : MonoBehaviour
         Debug.Log("Collider trouvé, activation !");
         col.enabled = true;
 
-        yield return new WaitForSeconds(attackDuration);
+        yield return new WaitForSeconds(basicAttackDuration);
 
         col.enabled = false;
         Debug.Log("Collider désactivé : " + hitbox.name);
