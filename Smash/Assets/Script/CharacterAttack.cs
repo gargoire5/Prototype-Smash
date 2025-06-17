@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -75,6 +75,8 @@ public abstract class CharacterAttack : MonoBehaviour
             else
                 holdTime = 0f;
         };
+
+        attackAction.performed += _ => BasicAttack();
     }
 
     protected virtual void OnDisable()
@@ -110,9 +112,7 @@ public abstract class CharacterAttack : MonoBehaviour
 
     protected virtual void BasicAttack()
     {
-        if (isHoldingAttack) return;
-
-        Debug.Log("BasicAttack");
+        Debug.Log("BasicAttack appel√©e");
 
         GameObject selectedHitbox = null;
 
@@ -128,20 +128,28 @@ public abstract class CharacterAttack : MonoBehaviour
 
     private IEnumerator ActivateHitboxCollider(GameObject hitbox)
     {
-        Collider col = hitbox.GetComponent<Collider>();
-        if (col == null)
+        Debug.Log($"Activation demand√©e pour : {hitbox?.name}");
+
+        if (hitbox == null)
         {
-            Debug.LogError("Pas de collider trouvÈ sur la hitbox : " + hitbox.name);
+            Debug.LogError("La hitbox est NULL !");
             yield break;
         }
 
+        Collider col = hitbox.GetComponent<Collider>();
+        if (col == null)
+        {
+            Debug.LogError("Aucun Collider trouv√© sur " + hitbox.name);
+            yield break;
+        }
+
+        Debug.Log("Collider trouv√©, activation !");
         col.enabled = true;
-        Debug.Log("Hitbox activÈe : " + hitbox.name);
 
         yield return new WaitForSeconds(attackDuration);
 
         col.enabled = false;
-        Debug.Log("Hitbox dÈsactivÈe : " + hitbox.name);
+        Debug.Log("Collider d√©sactiv√© : " + hitbox.name);
     }
 
     protected abstract void ChargeAttack();

@@ -7,6 +7,7 @@ public class Player1 : CharacterAttack
     protected override void BasicAttack()
     {
         Debug.Log("BasicAttack");
+        base.BasicAttack();
     }
 
     protected override void ChargeAttack()
