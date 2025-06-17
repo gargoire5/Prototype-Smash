@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 487742631}
   - component: {fileID: 487742630}
   - component: {fileID: 487742629}
+  - component: {fileID: 487742635}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Untagged
@@ -241,7 +242,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487742628}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1aac343c6507fa489c2ec96f99276eb, type: 3}
   m_Name: 
@@ -343,6 +344,20 @@ Transform:
   - {fileID: 1838296959}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &487742635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487742628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f44999ead69f3a4daeb8f8ba80b323d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 0
+  knockbackMultiplier: 1.5
 --- !u!1 &788533867
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +453,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -572,6 +587,7 @@ GameObject:
   - component: {fileID: 1266544901}
   - component: {fileID: 1266544900}
   - component: {fileID: 1266544902}
+  - component: {fileID: 1266544903}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -748,6 +764,36 @@ MonoBehaviour:
   hitboxUp: {fileID: 788533867}
   attackDuration: 0.2
   isAttacking: 0
+--- !u!114 &1266544903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266544895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player1
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1639864366
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,7 +889,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1179,7 +1225,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058455418}
-  m_Material: {fileID: 13400000, guid: 4351d2a0901dda343bf9cf92e7474e26, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
