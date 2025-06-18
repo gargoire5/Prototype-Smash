@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4261550115902272785}
   - component: {fileID: 7601990868443052531}
   - component: {fileID: 7564385786759016824}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FugSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

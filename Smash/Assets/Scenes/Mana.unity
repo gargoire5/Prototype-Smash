@@ -563,6 +563,7 @@ MonoBehaviour:
   ultimateDelay: 30
   ultimateRate: 0.2
   ultimateDamage: 20
+  currentAttackType: 0
 --- !u!1 &788533867
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,13 +982,14 @@ MonoBehaviour:
   chargeAttackDamage: 7.5
   chargeTimeTreshold: 0.5
   skillDuration: 0.2
-  skillDelay: 0
+  skillDelay: 10
   skillRate: 0.2
   skillDamage: 10
   ultimateDuration: 0.2
   ultimateDelay: 30
   ultimateRate: 0.2
   ultimateDamage: 20
+  currentAttackType: 0
 --- !u!114 &1266544903
 MonoBehaviour:
   m_ObjectHideFlags: 0

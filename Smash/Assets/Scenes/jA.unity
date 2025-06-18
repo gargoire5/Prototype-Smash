@@ -457,6 +457,7 @@ MonoBehaviour:
   ultimateDelay: 30
   ultimateRate: 0.2
   ultimateDamage: 20
+  currentAttackType: 0
   ultObject: {fileID: 2648783914185132204, guid: 2c19d1d7bd3f2194a8b11be8191f01d3, type: 3}
   skillObject: {fileID: 737210374324018595, guid: 32bccc9f3620b924b9034a698bea595e, type: 3}
 --- !u!114 &467499910290998144
@@ -596,7 +597,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -613,7 +614,7 @@ GameObject:
   - component: {fileID: 7374453821944826632}
   - component: {fileID: 6168902682807044945}
   - component: {fileID: 8035228364406643032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,10 +633,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aac343c6507fa489c2ec96f99276eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveAction: {fileID: -8076291310143691428, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
-  JumpAction: {fileID: 900505413667631089, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
-  speed: 5
-  moveForce: 10
+  MoveAction: {fileID: -8076291310143691428, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
+  JumpAction: {fileID: 900505413667631089, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
+  speed: 10
+  moveForce: 20
   rb: {fileID: 7201286300999391157}
   bounceForce: 20
   maxHeals: 10
@@ -655,7 +656,7 @@ GameObject:
   - component: {fileID: 3288039833495810499}
   - component: {fileID: 1134436700680811994}
   - component: {fileID: 7437910399528350816}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +742,7 @@ GameObject:
   - component: {fileID: 7488767561932492168}
   - component: {fileID: 6368606298104402873}
   - component: {fileID: 7570959368801282749}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -931,7 +932,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -957,7 +958,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4cddaa59e5049c049a0490e8a59b3b70, type: 2}
+  - {fileID: 2100000, guid: e1d910d842e989f4393d455b65eb99c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1010,7 +1011,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1054,7 +1055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6583765483852238534, guid: 2e9c0f64493f8a14fa958a545b553fc2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 6583765483852238534, guid: 2e9c0f64493f8a14fa958a545b553fc2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1136,6 +1137,7 @@ GameObject:
   - component: {fileID: 7201286300999391157}
   - component: {fileID: 160269870318294634}
   - component: {fileID: 467499910290998144}
+  - component: {fileID: 8423981055444956030}
   m_Layer: 0
   m_Name: Manaarii
   m_TagString: Untagged
@@ -1143,6 +1145,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8423981055444956030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8423981055444956029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f44999ead69f3a4daeb8f8ba80b323d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 0
+  knockbackMultiplier: 1.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
