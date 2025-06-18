@@ -62,9 +62,9 @@ public class CHA_Manaarii : CharacterAttack
         Destroy(currentSkill, 2.0f);
     }
 
-    protected override void UltimateAttack()
+    protected override void UltimeAttack()
     {
-        base.UltimateAttack();
+        base.UltimeAttack();
 
         GameObject selectedHitbox = ultObject;
 
