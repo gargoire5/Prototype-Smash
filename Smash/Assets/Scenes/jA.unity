@@ -250,11 +250,13 @@ MonoBehaviour:
   MoveAction: {fileID: -8076291310143691428, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
   JumpAction: {fileID: 900505413667631089, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
   speed: 5
+  moveForce: 10
   rb: {fileID: 487742629}
   bounceForce: 10
   maxHeals: 10
   heals: 0
   numJump: 3
+  gravityMulti: 3
 --- !u!65 &487742631
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -654,7 +656,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4cddaa59e5049c049a0490e8a59b3b70, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -712,7 +714,7 @@ Rigidbody:
   m_GameObject: {fileID: 1266544895}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 2.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -745,11 +747,13 @@ MonoBehaviour:
   MoveAction: {fileID: -8076291310143691428, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
   JumpAction: {fileID: 900505413667631089, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
   speed: 5
+  moveForce: 10
   rb: {fileID: 1266544900}
-  bounceForce: 10
+  bounceForce: 20
   maxHeals: 10
   heals: 0
   numJump: 3
+  gravityMulti: 3
 --- !u!114 &1266544903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,6 +807,7 @@ MonoBehaviour:
     m_Flags: 0
   isHoldingAttack: 0
   canUseUltimate: 1
+  canUseSkill: 1
   selectedHitbox: {fileID: 0}
   hitboxRight: {fileID: 2058455418}
   hitboxLeft: {fileID: 1639864366}

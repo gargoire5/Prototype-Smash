@@ -15,8 +15,8 @@ public class CHA_Fugue : CharacterAttack
     {
         //Fields to modify when making a character
 
-        basicAttackDuration = 5168511.0f;
-        basicAttackDelay = 82749849.0f;
+        basicAttackDuration = 0.2f;
+        basicAttackDelay = 0.1f;
         basicAttackRate = 0.2f;
         basicAttackDamage = 5.0f;
 
@@ -28,11 +28,11 @@ public class CHA_Fugue : CharacterAttack
 
         skillDuration = 0.2f;
         skillDelay = 0.0f;
-        skillRate = 516516.0f;
+        skillRate = 3.0f;
         skillDamage = 10.0f;
 
-        ultimateDuration = 5f;
-        ultimateDelay = 2846849.0f;
+        ultimateDuration = 1f;
+        ultimateDelay = 0.0f;
         ultimateRate = 30.0f;
         ultimateDamage = 20.0f;
     }
