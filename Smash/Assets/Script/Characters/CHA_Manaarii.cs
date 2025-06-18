@@ -15,7 +15,7 @@ public class CHA_Manaarii : CharacterAttack
     {
         //Fields to modify when making a character
 
-        basicAttackDuration = 0.2f;
+        /*basicAttackDuration = 0.2f;
         basicAttackDelay = 0.1f;
         basicAttackRate = 0.2f;
         basicAttackDamage = 5.0f;
@@ -34,7 +34,7 @@ public class CHA_Manaarii : CharacterAttack
         ultimateDuration = 1f;
         ultimateDelay = 0.0f;
         ultimateRate = 30.0f;
-        ultimateDamage = 20.0f;
+        ultimateDamage = 20.0f;*/
     }
 
     protected override void BasicAttack()
@@ -63,9 +63,9 @@ public class CHA_Manaarii : CharacterAttack
         Destroy(currentSkill, 2.0f);
     }
 
-    protected override void UltimateAttack()
+    protected override void UltimeAttack()
     {
-        base.UltimateAttack();
+        base.UltimeAttack();
 
         GameObject selectedHitbox = ultObject;
 

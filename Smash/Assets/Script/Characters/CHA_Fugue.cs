@@ -11,11 +11,29 @@ public class CHA_Fugue : CharacterAttack
     [SerializeField]
     private GameObject skillObject;
 
+    /*public override float BasicDamage => 6f;
+    public override float BasicKnockback => 5f;
+    public override float BasicDuration => 0.4f;
+    public override float BasicDelay => 0.05f;
+    public override float BasicRate => 0.1f;
+
+    public override float SkillDamage => 18f;
+    public override float SkillKnockback => 12f;
+    public override float SkillDuration => 0f;
+    public override float SkillDelay => 0f;
+    public override float SkillRate => 3f;
+
+    public override float UltimateDamage => 35f;
+    public override float UltimateKnockback => 40f;
+    public override float UltimateDuration => 0.5f;
+    public override float UltimateDelay => 0f;
+    public override float UltimateRate => 30f;*/
+
     private void Start()
     {
         //Fields to modify when making a character
 
-        basicAttackDuration = 0.2f;
+        /*basicAttackDuration = 0.2f;
         basicAttackDelay = 0.1f;
         basicAttackRate = 0.2f;
         basicAttackDamage = 5.0f;
@@ -34,7 +52,7 @@ public class CHA_Fugue : CharacterAttack
         ultimateDuration = 1f;
         ultimateDelay = 0.0f;
         ultimateRate = 30.0f;
-        ultimateDamage = 20.0f;
+        ultimateDamage = 20.0f;*/
     }
 
     protected override void BasicAttack()
@@ -63,7 +81,7 @@ public class CHA_Fugue : CharacterAttack
         Destroy(currentSkill, 2.0f);
     }
 
-    protected override void UltimateAttack()
+   protected override void UltimeAttack()
     {
         base.UltimateAttack();
 
