@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,10 +66,10 @@ public class PlayerController : MonoBehaviour
 
     void Jump(InputAction.CallbackContext obj)
     {
-        var attackScript = GetComponent<CharacterAttack>();
+        CharacterAttack attackScript = GetComponent<CharacterAttack>();
         if (attackScript != null && attackScript.IsTryingToAttackUp())
         {
-            Debug.Log("Annulation du saut : attaque vers le haut");
+            Debug.Log("Saut annulé : attaque vers le haut");
             return;
         }
 

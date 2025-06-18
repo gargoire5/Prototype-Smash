@@ -2,6 +2,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum AttackType
+{
+    Basic,
+    Skill,
+    Ultimate
+}
+
 public abstract class CharacterAttack : MonoBehaviour
 {
     protected PlayerInput playerInput;
@@ -55,6 +62,37 @@ public abstract class CharacterAttack : MonoBehaviour
     public float ultimateDelay;
     public float ultimateRate;
     public float ultimateDamage;
+
+    public AttackType currentAttackType = AttackType.Basic;
+
+    #region Virtual Properties - Override in Character Children
+
+    public virtual float BasicDamage => basicAttackDamage;
+    public virtual float BasicDuration => basicAttackDuration;
+    public virtual float BasicDelay => basicAttackDelay;
+    public virtual float BasicRate => basicAttackRate;
+
+    public virtual float ChargeDamage => chargeAttackDamage;
+    public virtual float ChargeDuration => chargeAttackDuration;
+    public virtual float ChargeDelay => chargeAttackDelay;
+    public virtual float ChargeRate => chargeAttackRate;
+
+    public virtual float SkillDamage => skillDamage;
+    public virtual float SkillDuration => skillDuration;
+    public virtual float SkillDelay => skillDelay;
+    public virtual float SkillRate => skillRate;
+
+    public virtual float UltimateDamage => ultimateDamage;
+    public virtual float UltimateDuration => ultimateDuration;
+    public virtual float UltimateDelay => ultimateDelay;
+    public virtual float UltimateRate => ultimateRate;
+
+    public virtual float BasicKnockback => 5f;
+    public virtual float ChargeKnockback => 7f;
+    public virtual float SkillKnockback => 10f;
+    public virtual float UltimateKnockback => 15f;
+
+    #endregion
 
     public bool IsTryingToAttackUp()
     {
@@ -151,7 +189,12 @@ public abstract class CharacterAttack : MonoBehaviour
     protected virtual void BasicAttack()
     {
         Debug.Log("BasicAttack appelée");
-
+        if (jumpAction.IsPressed())
+            selectedHitbox = hitboxUp;
+        else if (lastMoveDirection.x > 0)
+            selectedHitbox = hitboxRight;
+        else
+            selectedHitbox = hitboxLeft;
         StartCoroutine(ActivateHitboxCollider(selectedHitbox));
     }
 
