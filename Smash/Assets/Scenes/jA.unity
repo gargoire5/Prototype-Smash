@@ -411,55 +411,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &160269870318294634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8423981055444956029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6818c0811744e134faa62aebc64854ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpAction:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 24eea99c-d784-40c1-b7b2-7c153787198e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  isHoldingAttack: 0
-  canUseUltimate: 1
-  canUseSkill: 1
-  selectedHitbox: {fileID: 0}
-  hitboxRight: {fileID: 4147697146262745853}
-  hitboxLeft: {fileID: 4595806876302406239}
-  hitboxUp: {fileID: 5460361287788733530}
-  isAttacking: 0
-  basicAttackDuration: 0.2
-  basicAttackDelay: 0
-  basicAttackRate: 0.2
-  basicAttackDamage: 5
-  chargeAttackDuration: 0.2
-  chargeAttackDelay: 0
-  chargeAttackRate: 0.2
-  chargeAttackDamage: 7.5
-  chargeTimeTreshold: 0.5
-  skillDuration: 0.2
-  skillDelay: 0
-  skillRate: 0.2
-  skillDamage: 10
-  ultimateDuration: 0.2
-  ultimateDelay: 30
-  ultimateRate: 0.2
-  ultimateDamage: 20
-  currentAttackType: 0
-  ultObject: {fileID: 2648783914185132204, guid: 2c19d1d7bd3f2194a8b11be8191f01d3, type: 3}
-  skillObject: {fileID: 737210374324018595, guid: 32bccc9f3620b924b9034a698bea595e, type: 3}
 --- !u!114 &467499910290998144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,8 +502,8 @@ Transform:
   m_GameObject: {fileID: 4595806876302406239}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.9}
-  m_LocalScale: {x: 1, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0, z: -0.649}
+  m_LocalScale: {x: 1, y: 0.8, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4849081522886115282}
@@ -574,8 +525,8 @@ Transform:
   m_GameObject: {fileID: 4147697146262745853}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.9}
-  m_LocalScale: {x: 1, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0.644}
+  m_LocalScale: {x: 1, y: 0.8, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4849081522886115282}
@@ -636,13 +587,14 @@ MonoBehaviour:
   MoveAction: {fileID: -8076291310143691428, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
   JumpAction: {fileID: 900505413667631089, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
   speed: 10
-  moveForce: 20
+  moveForce: 15
   rb: {fileID: 7201286300999391157}
-  bounceForce: 20
+  bounceForce: 10
   maxHeals: 10
   heals: 0
-  numJump: 3
-  gravityMulti: 3
+  maxJump: 5
+  numJump: 5
+  gravityMulti: 2
 --- !u!1 &4595806876302406239
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +833,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8423981055444956029}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.5
   m_Drag: 2.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -909,8 +861,8 @@ Transform:
   m_GameObject: {fileID: 5460361287788733530}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
-  m_LocalScale: {x: 1, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0, y: 1.254, z: 0}
+  m_LocalScale: {x: 1, y: 1.5, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4849081522886115282}
@@ -992,7 +944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5929393fc300b4647a9be8db3c0bca85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 15
   owner: {fileID: 0}
 --- !u!65 &7488767561932492168
 BoxCollider:
@@ -1035,7 +987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5929393fc300b4647a9be8db3c0bca85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 7
   owner: {fileID: 0}
 --- !u!1001 &8004553174057122669
 PrefabInstance:
@@ -1106,7 +1058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5929393fc300b4647a9be8db3c0bca85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 15
   owner: {fileID: 0}
 --- !u!114 &8214760760472307791
 MonoBehaviour:
@@ -1134,8 +1086,8 @@ GameObject:
   - component: {fileID: 7434620503004681817}
   - component: {fileID: 4996038762396912823}
   - component: {fileID: 4488465869743763415}
+  - component: {fileID: 8423981055444956031}
   - component: {fileID: 7201286300999391157}
-  - component: {fileID: 160269870318294634}
   - component: {fileID: 467499910290998144}
   - component: {fileID: 8423981055444956030}
   m_Layer: 0
@@ -1159,6 +1111,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePercent: 0
   knockbackMultiplier: 1.5
+--- !u!114 &8423981055444956031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8423981055444956029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aaa9f0b8ed85444ba4b59ea64efc7cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpAction:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 830bbf4c-7a34-4857-8894-3f98c39b2d22
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  isHoldingAttack: 0
+  canUseUltimate: 1
+  canUseSkill: 1
+  selectedHitbox: {fileID: 0}
+  hitboxRight: {fileID: 4147697146262745853}
+  hitboxLeft: {fileID: 4595806876302406239}
+  hitboxUp: {fileID: 5460361287788733530}
+  isAttacking: 0
+  basicAttackDuration: 0
+  basicAttackDelay: 0
+  basicAttackRate: 0
+  basicAttackDamage: 0
+  chargeAttackDuration: 0
+  chargeAttackDelay: 0
+  chargeAttackRate: 0
+  chargeAttackDamage: 0
+  chargeTimeTreshold: 0
+  skillDuration: 0
+  skillDelay: 0
+  skillRate: 0
+  skillDamage: 0
+  ultimateDuration: 0
+  ultimateDelay: 0
+  ultimateRate: 0
+  ultimateDamage: 0
+  currentAttackType: 0
+  ultObject: {fileID: 0}
+  skillObject: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

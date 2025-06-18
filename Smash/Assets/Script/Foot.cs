@@ -10,7 +10,7 @@ public class Foot : MonoBehaviour
     {
         if (other.gameObject.layer == 8)
         {
-            controller.numJump = 3;
+            controller.numJump = controller.maxJump;
         }
     }
 }

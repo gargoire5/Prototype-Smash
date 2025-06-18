@@ -180,7 +180,7 @@ public abstract class CharacterAttack : MonoBehaviour
 
             if (holdTime < chargeTimeTreshold && Time.time >= basicAttackCooldown)
             {
-                basicAttackCooldown = Time.time + basicAttackRate;
+                basicAttackCooldown = Time.time + BasicRate;
                 BasicAttack();
             }
         }
@@ -189,6 +189,8 @@ public abstract class CharacterAttack : MonoBehaviour
     protected virtual void BasicAttack()
     {
         Debug.Log("BasicAttack appelée");
+        currentAttackType = AttackType.Basic;
+
         if (jumpAction.IsPressed())
             selectedHitbox = hitboxUp;
         else if (lastMoveDirection.x > 0)
@@ -208,7 +210,7 @@ public abstract class CharacterAttack : MonoBehaviour
             yield break;
         }
 
-        yield return new WaitForSeconds(basicAttackDelay);
+        yield return new WaitForSeconds(BasicDelay);
 
         Collider col = hitbox.GetComponent<Collider>();
         if (col == null)
@@ -227,22 +229,20 @@ public abstract class CharacterAttack : MonoBehaviour
         if (renderer != null)
             renderer.enabled = true;
 
-        Debug.Log("Collider trouvé, activation !");
         col.enabled = true;
 
-        yield return new WaitForSeconds(basicAttackDuration);
+        yield return new WaitForSeconds(BasicDuration);
 
         col.enabled = false;
         if (renderer != null)
             renderer.enabled = false;
-        Debug.Log("Collider désactivé : " + hitbox.name);
     }
 
     public IEnumerator UseSkill()
     {
         canUseSkill = false;
 
-        yield return new WaitForSecondsRealtime(skillRate);
+        yield return new WaitForSecondsRealtime(SkillRate);
 
         canUseSkill = true;
     }
@@ -251,7 +251,7 @@ public abstract class CharacterAttack : MonoBehaviour
     {
         canUseUltimate = false;
 
-        yield return new WaitForSecondsRealtime(ultimateRate);
+        yield return new WaitForSecondsRealtime(UltimateRate);
 
         canUseUltimate = true;
     }
@@ -260,13 +260,13 @@ public abstract class CharacterAttack : MonoBehaviour
     protected virtual void SkillAttack()
     {
         Debug.Log("Skill");
-
+        currentAttackType = AttackType.Skill;
         StartCoroutine(UseSkill());
     }
     protected virtual void UltimateAttack()
     {
         Debug.Log("Ultimate");
-
+        currentAttackType = AttackType.Ultimate;
         StartCoroutine(UseUlt());
     }
     protected abstract void ParadeAction();

@@ -40,12 +40,11 @@ public class CHA_Manaarii : CharacterAttack
     protected override void BasicAttack()
     {
         base.BasicAttack();
-        Debug.Log("BasicAttack bleb");
     }
 
     protected override void ChargeAttack()
     {
-        Debug.Log("ChargeAttack");
+
     }
 
     protected override void SkillAttack()
