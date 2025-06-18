@@ -12,12 +12,11 @@ public class Hitbox : MonoBehaviour
             if (transform.parent != null)
                 transform.parent.TryGetComponent<CharacterAttack>(out owner);
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        DamageReceiver receiver = other.GetComponent<DamageReceiver>();
+        other.TryGetComponent<DamageReceiver>(out DamageReceiver receiver);
 
         if (owner != null)
         {
@@ -31,7 +30,7 @@ public class Hitbox : MonoBehaviour
                 Debug.Log("Dégâts infligés à " + other.name);
             }
         }
-        else
+        else if (receiver != null)
         {
             Vector3 direction = (other.transform.position - transform.position).normalized;
             receiver.TakeDamage(damage, direction);
