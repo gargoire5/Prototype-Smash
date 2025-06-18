@@ -1158,8 +1158,8 @@ MonoBehaviour:
   ultimateRate: 0
   ultimateDamage: 0
   currentAttackType: 0
-  ultObject: {fileID: 0}
-  skillObject: {fileID: 0}
+  ultObject: {fileID: 931418899991162427, guid: 9e484630d2452624f81be7bcb37269cb, type: 3}
+  skillObject: {fileID: 3094274303914752526, guid: 2558699b42e90874880a3f9957255753, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

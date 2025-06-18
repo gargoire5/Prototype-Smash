@@ -11,31 +11,23 @@ public class CHA_Manaarii : CharacterAttack
     [SerializeField]
     private GameObject skillObject;
 
-    private void Start()
-    {
-        //Fields to modify when making a character
+    public override float BasicDamage => 8f;
+    public override float BasicKnockback => 3f;
+    public override float BasicDuration => 0.4f;
+    public override float BasicDelay => 0.05f;
+    public override float BasicRate => 0.1f;
 
-        basicAttackDuration = 0.2f;
-        basicAttackDelay = 0.1f;
-        basicAttackRate = 0.2f;
-        basicAttackDamage = 5.0f;
+    public override float SkillDamage => 18f;
+    public override float SkillKnockback => 17f;
+    public override float SkillDuration => 0.2f;
+    public override float SkillDelay => 0f;
+    public override float SkillRate => 10f;
 
-        chargeAttackDuration = 0.2f;
-        chargeAttackDelay = 0.0f;
-        chargeAttackRate = 0.2f;
-        chargeAttackDamage = 7.5f;
-        chargeTimeTreshold = 0.5f;
-
-        skillDuration = 0.2f;
-        skillDelay = 0.0f;
-        skillRate = 3.0f;
-        skillDamage = 10.0f;
-
-        ultimateDuration = 1f;
-        ultimateDelay = 0.0f;
-        ultimateRate = 30.0f;
-        ultimateDamage = 20.0f;
-    }
+    public override float UltimateDamage => 10f;
+    public override float UltimateKnockback => 7f;
+    public override float UltimateDuration => 5f;
+    public override float UltimateDelay => 0f;
+    public override float UltimateRate => 20f;
 
     protected override void BasicAttack()
     {
@@ -51,24 +43,21 @@ public class CHA_Manaarii : CharacterAttack
     {
         base.SkillAttack();
 
-        if (selectedHitbox == null)
-            selectedHitbox = hitboxRight;
-
-        GameObject currentSkill = Instantiate(skillObject, selectedHitbox.transform.position, selectedHitbox.transform.rotation);
-        SKI_Fugue skill = currentSkill.GetComponent<SKI_Fugue>();
-
-        if (selectedHitbox == hitboxLeft)
-            skill.SetDirection(-1);
-        Destroy(currentSkill, 2.0f);
+        GameObject currentSkill = Instantiate(skillObject, transform.position, transform.rotation);
+        currentSkill.GetComponent<Hitbox>().owner = this;
+        Destroy(currentSkill, SkillDuration);
     }
 
     protected override void UltimateAttack()
     {
         base.UltimateAttack();
 
-        GameObject selectedHitbox = ultObject;
+        if (selectedHitbox == null)
+            selectedHitbox = hitboxRight;
 
-        StartCoroutine(UltAttack(selectedHitbox));
+        GameObject hitbox = ultObject;
+
+        StartCoroutine(UltAttack(hitbox));
     }
 
     protected override void ParadeAction()
@@ -80,7 +69,14 @@ public class CHA_Manaarii : CharacterAttack
     {
         yield return new WaitForSeconds(ultimateDelay);
 
-        GameObject currentHitbox = Instantiate(hitbox, transform.position, transform.rotation);
+        int direction = 1;
+        if (selectedHitbox == hitboxLeft)
+            direction = -1;
+
+        GameObject currentHitbox = Instantiate(hitbox, selectedHitbox.transform.position, selectedHitbox.transform.rotation);
+        currentHitbox.GetComponent<Rigidbody>().AddForce(0, 0, 10 * direction);
+        currentHitbox.GetComponent<ULT_Manaarii>().manaarii = gameObject;
+        currentHitbox.GetComponent<ULT_Manaarii>().isGoingBack = true;
 
         yield return new WaitForSeconds(ultimateDuration);
 
