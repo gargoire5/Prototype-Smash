@@ -25,6 +25,9 @@ public abstract class CharacterAttack : MonoBehaviour
     public bool isHoldingAttack = false;
 
     public bool canUseUltimate = false;
+    public bool canUseSkill = true;
+
+    public GameObject selectedHitbox = null;
 
     [Header("Hitboxes")]
     public GameObject hitboxRight;
@@ -36,29 +39,29 @@ public abstract class CharacterAttack : MonoBehaviour
 
     //Fields to modify while making a character
     [Header("Attack Data - Basic Attack")]
-    public float basicAttackDuration = 0.2f;
-    public float basicAttackDelay = 0.0f;
-    public float basicAttackRate = 0.2f;
-    public float basicAttackDamage = 5.0f;
+    public float basicAttackDuration;
+    public float basicAttackDelay;
+    public float basicAttackRate;
+    public float basicAttackDamage;
 
     [Header("Attack Data - Charge Attack")]
-    public float chargeAttackDuration = 0.2f;
-    public float chargeAttackDelay = 0.0f;
-    public float chargeAttackRate = 0.2f;
-    public float chargeAttackDamage = 7.5f;
-    public float chargeTimeTreshold = 0.5f;
+    public float chargeAttackDuration;
+    public float chargeAttackDelay;
+    public float chargeAttackRate;
+    public float chargeAttackDamage;
+    public float chargeTimeTreshold;
 
     [Header("Attack Data - Skill")]
-    public float skillDuration = 0.2f;
-    public float skillDelay = 0.0f;
-    public float skillRate = 0.2f;
-    public float skillDamage = 10.0f;
+    public float skillDuration;
+    public float skillDelay;
+    public float skillRate;
+    public float skillDamage;
 
     [Header("Attack Data - Ultimate")]
-    public float ultimateDuration = 0.2f;
-    public float ultimateDelay = 30.0f;
-    public float ultimateRate = 0.2f;
-    public float ultimateDamage = 20.0f;
+    public float ultimateDuration;
+    public float ultimateDelay;
+    public float ultimateRate;
+    public float ultimateDamage;
 
     public AttackType currentAttackType = AttackType.Basic;
 
@@ -161,6 +164,13 @@ public abstract class CharacterAttack : MonoBehaviour
         if (moveInput.x != 0)
         {
             lastMoveDirection = new Vector2(Mathf.Sign(moveInput.x), 0);
+
+            if (jumpAction.IsPressed())
+                selectedHitbox = hitboxUp;
+            else if (lastMoveDirection.x > 0)
+                selectedHitbox = hitboxRight;
+            else
+                selectedHitbox = hitboxLeft;
         }
 
         if (isHoldingAttack)
@@ -178,15 +188,6 @@ public abstract class CharacterAttack : MonoBehaviour
     protected virtual void BasicAttack()
     {
         Debug.Log("BasicAttack appelée");
-
-        GameObject selectedHitbox = null;
-
-        if (jumpAction.IsPressed())
-            selectedHitbox = hitboxUp;
-        else if (lastMoveDirection.x > 0)
-            selectedHitbox = hitboxRight;
-        else
-            selectedHitbox = hitboxLeft;
 
         StartCoroutine(ActivateHitboxCollider(selectedHitbox));
     }
@@ -229,6 +230,15 @@ public abstract class CharacterAttack : MonoBehaviour
         if (renderer !=null)
             renderer.enabled = false;
         Debug.Log("Collider désactivé : " + hitbox.name);
+    }
+
+    public IEnumerator UseSkill()
+    {
+        canUseSkill = false;
+
+        yield return new WaitForSecondsRealtime(skillRate);
+
+        canUseSkill = true;
     }
 
     protected abstract void ChargeAttack();

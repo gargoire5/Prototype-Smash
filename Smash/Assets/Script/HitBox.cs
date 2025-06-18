@@ -7,13 +7,18 @@ public class Hitbox : MonoBehaviour
 
     private void Start()
     {
-        if (owner == null && transform.parent != null)
-            transform.parent.TryGetComponent<CharacterAttack>(out owner);
+        if (owner == null)
+        {
+            if (transform.parent != null)
+                transform.parent.TryGetComponent<CharacterAttack>(out owner);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<DamageReceiver>(out DamageReceiver receiver))
+        other.TryGetComponent<DamageReceiver>(out DamageReceiver receiver);
+
+        if (owner != null)
         {
             if (owner != null)
             {
@@ -48,6 +53,11 @@ public class Hitbox : MonoBehaviour
                 Vector3 direction = (other.transform.position - transform.position).normalized;
                 receiver.TakeDamage(damage, direction);
             }
+        }
+        else if (receiver != null)
+        {
+            Vector3 direction = (other.transform.position - transform.position).normalized;
+            receiver.TakeDamage(damage, direction);
         }
     }
 }

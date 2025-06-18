@@ -10,17 +10,21 @@ public class PlayerController : MonoBehaviour
     public InputActionReference JumpAction;
 
     public float speed = 5f;
+    public float moveForce = 10f;
 
     public Rigidbody rb;
 
     private Vector2 inputDirection;
 
-    public float bounceForce = 10f;
+    public float bounceForce = 20f;
 
     public float maxHeals = 10;
     public float heals;
 
     public int numJump = 3;
+    private float lastDirc;
+
+    public float gravityMulti = 3f;
 
     void Start()
     {
@@ -43,6 +47,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector3 extraGravity = Physics.gravity * (gravityMulti - 1f);
+        rb.AddForce(extraGravity, ForceMode.Acceleration);
         MovePlayer();
     }
 
@@ -50,9 +56,12 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         Vector3 move = transform.forward * inputDirection.x;
-        Vector3 velocity = move * speed;
-        Vector3 rbVelocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
-        rb.velocity = rbVelocity;
+
+        if (inputDirection.x != 0)
+        {
+            rb.AddForce(move * moveForce, ForceMode.Force);
+            lastDirc = inputDirection.x;
+        }   
     }
 
     void Jump(InputAction.CallbackContext obj)
