@@ -2,6 +2,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum AttackType
+{
+    Basic,
+    Skill,
+    Ultimate
+}
+
 public abstract class CharacterAttack : MonoBehaviour
 {
     protected PlayerInput playerInput;
@@ -52,6 +59,37 @@ public abstract class CharacterAttack : MonoBehaviour
     public float ultimateDelay = 30.0f;
     public float ultimateRate = 0.2f;
     public float ultimateDamage = 20.0f;
+
+    public AttackType currentAttackType = AttackType.Basic;
+
+    #region Virtual Properties - Override in Character Children
+
+    public virtual float BasicDamage => basicAttackDamage;
+    public virtual float BasicDuration => basicAttackDuration;
+    public virtual float BasicDelay => basicAttackDelay;
+    public virtual float BasicRate => basicAttackRate;
+
+    public virtual float ChargeDamage => chargeAttackDamage;
+    public virtual float ChargeDuration => chargeAttackDuration;
+    public virtual float ChargeDelay => chargeAttackDelay;
+    public virtual float ChargeRate => chargeAttackRate;
+
+    public virtual float SkillDamage => skillDamage;
+    public virtual float SkillDuration => skillDuration;
+    public virtual float SkillDelay => skillDelay;
+    public virtual float SkillRate => skillRate;
+
+    public virtual float UltimateDamage => ultimateDamage;
+    public virtual float UltimateDuration => ultimateDuration;
+    public virtual float UltimateDelay => ultimateDelay;
+    public virtual float UltimateRate => ultimateRate;
+
+    public virtual float BasicKnockback => 5f;
+    public virtual float ChargeKnockback => 7f;
+    public virtual float SkillKnockback => 10f;
+    public virtual float UltimateKnockback => 15f;
+
+    #endregion
 
     public bool IsTryingToAttackUp()
     {

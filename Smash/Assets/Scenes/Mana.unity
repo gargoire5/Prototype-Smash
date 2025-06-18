@@ -374,11 +374,13 @@ MonoBehaviour:
   MoveAction: {fileID: -8076291310143691428, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
   JumpAction: {fileID: 900505413667631089, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
   speed: 5
+  moveForce: 10
   rb: {fileID: 487742629}
   bounceForce: 10
   maxHeals: 10
   heals: 0
   numJump: 3
+  gravityMulti: 3
 --- !u!65 &487742631
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -538,6 +540,8 @@ MonoBehaviour:
     m_Flags: 0
   isHoldingAttack: 0
   canUseUltimate: 0
+  canUseSkill: 1
+  selectedHitbox: {fileID: 0}
   hitboxRight: {fileID: 2131358719}
   hitboxLeft: {fileID: 258465639}
   hitboxUp: {fileID: 1834168057}
@@ -559,6 +563,7 @@ MonoBehaviour:
   ultimateDelay: 30
   ultimateRate: 0.2
   ultimateDamage: 20
+  currentAttackType: 0
 --- !u!1 &788533867
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,11 +936,13 @@ MonoBehaviour:
   MoveAction: {fileID: -8076291310143691428, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
   JumpAction: {fileID: 900505413667631089, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
   speed: 5
+  moveForce: 10
   rb: {fileID: 1266544900}
   bounceForce: 10
   maxHeals: 10
   heals: 0
   numJump: 3
+  gravityMulti: 3
 --- !u!114 &1266544902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,6 +966,8 @@ MonoBehaviour:
     m_Flags: 0
   isHoldingAttack: 0
   canUseUltimate: 0
+  canUseSkill: 1
+  selectedHitbox: {fileID: 0}
   hitboxRight: {fileID: 2058455418}
   hitboxLeft: {fileID: 1639864366}
   hitboxUp: {fileID: 788533867}
@@ -973,13 +982,14 @@ MonoBehaviour:
   chargeAttackDamage: 7.5
   chargeTimeTreshold: 0.5
   skillDuration: 0.2
-  skillDelay: 0
+  skillDelay: 10
   skillRate: 0.2
   skillDamage: 10
   ultimateDuration: 0.2
   ultimateDelay: 30
   ultimateRate: 0.2
   ultimateDamage: 20
+  currentAttackType: 0
 --- !u!114 &1266544903
 MonoBehaviour:
   m_ObjectHideFlags: 0
