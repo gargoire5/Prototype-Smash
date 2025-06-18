@@ -83,7 +83,7 @@ public class CHA_Fugue : CharacterAttack
 
    protected override void UltimeAttack()
     {
-        base.UltimateAttack();
+        base.UltimeAttack();
 
         GameObject selectedHitbox = ultObject;
 

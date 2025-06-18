@@ -152,7 +152,7 @@ public abstract class CharacterAttack : MonoBehaviour
     protected virtual void OnDisable()
     {
         if (skillAttackAction != null) skillAttackAction.performed -= _ => SkillAttack();
-        if (ultimeAttackAction != null) ultimeAttackAction.performed -= _ => UltimateAttack();
+        if (ultimeAttackAction != null) ultimeAttackAction.performed -= _ => UltimeAttack();
         if (attackAction != null)
         {
             attackAction.started -= _ => { };
