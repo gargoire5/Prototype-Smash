@@ -81,14 +81,15 @@ public abstract class CharacterAttack : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        skillAttackAction.performed += _ => SkillAttack();
+        skillAttackAction.performed += _ =>
+        {
+            if (canUseSkill)
+                SkillAttack();
+        };
         ultimeAttackAction.performed += _ =>
         {
             if (canUseUltimate)
-            {
-                UltimeAttack();
-                canUseUltimate = false;
-            }
+                UltimateAttack();
         };
 
         attackAction.started += _ =>
@@ -112,7 +113,7 @@ public abstract class CharacterAttack : MonoBehaviour
     protected virtual void OnDisable()
     {
         if (skillAttackAction != null) skillAttackAction.performed -= _ => SkillAttack();
-        if (ultimeAttackAction != null) ultimeAttackAction.performed -= _ => UltimeAttack();
+        if (ultimeAttackAction != null) ultimeAttackAction.performed -= _ => UltimateAttack();
         if (attackAction != null)
         {
             attackAction.started -= _ => { };
@@ -189,7 +190,7 @@ public abstract class CharacterAttack : MonoBehaviour
         yield return new WaitForSeconds(basicAttackDuration);
 
         col.enabled = false;
-        if (renderer !=null)
+        if (renderer != null)
             renderer.enabled = false;
         Debug.Log("Collider désactivé : " + hitbox.name);
     }
@@ -203,8 +204,27 @@ public abstract class CharacterAttack : MonoBehaviour
         canUseSkill = true;
     }
 
+    public IEnumerator UseUlt()
+    {
+        canUseUltimate = false;
+
+        yield return new WaitForSecondsRealtime(ultimateRate);
+
+        canUseUltimate = true;
+    }
+
     protected abstract void ChargeAttack();
-    protected abstract void SkillAttack();
-    protected abstract void UltimeAttack();
+    protected virtual void SkillAttack()
+    {
+        Debug.Log("Skill");
+
+        StartCoroutine(UseSkill());
+    }
+    protected virtual void UltimateAttack()
+    {
+        Debug.Log("Ultimate");
+
+        StartCoroutine(UseUlt());
+    }
     protected abstract void ParadeAction();
 }

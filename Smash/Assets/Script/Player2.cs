@@ -20,7 +20,7 @@ public class Player2 : CharacterAttack
 
     }
 
-    protected override void UltimeAttack()
+    protected override void UltimateAttack()
     {
 
     }

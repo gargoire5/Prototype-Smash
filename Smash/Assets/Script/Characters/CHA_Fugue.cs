@@ -50,24 +50,19 @@ public class CHA_Fugue : CharacterAttack
 
     protected override void SkillAttack()
     {
-        if (canUseSkill)
-        {
-            GameObject currentSkill = Instantiate(skillObject, selectedHitbox.transform.position, selectedHitbox.transform.rotation);
-            SKI_Fugue skill = currentSkill.GetComponent<SKI_Fugue>();
+        base.SkillAttack();
 
-            if (selectedHitbox == hitboxLeft)
-                skill.SetDirection(-1);
-            Destroy(currentSkill, 2.0f);
+        GameObject currentSkill = Instantiate(skillObject, selectedHitbox.transform.position, selectedHitbox.transform.rotation);
+        SKI_Fugue skill = currentSkill.GetComponent<SKI_Fugue>();
 
-            StartCoroutine(UseSkill());
-        }
+        if (selectedHitbox == hitboxLeft)
+            skill.SetDirection(-1);
+        Destroy(currentSkill, 2.0f);
     }
 
-    protected override void UltimeAttack()
+    protected override void UltimateAttack()
     {
-        if (!canUseUltimate) return;
-
-        Debug.Log("Ultimate");
+        base.UltimateAttack();
 
         GameObject selectedHitbox = ultObject;
 
