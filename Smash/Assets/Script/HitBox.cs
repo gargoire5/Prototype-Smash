@@ -3,7 +3,7 @@
 public class Hitbox : MonoBehaviour
 {
     public float damage = 10f;
-    public CharacterAttack owner;
+    public CharacterAttack owner = null;
 
     private void Start()
     {
@@ -34,6 +34,7 @@ public class Hitbox : MonoBehaviour
         {
             Vector3 direction = (other.transform.position - transform.position).normalized;
             receiver.TakeDamage(damage, direction);
+            Debug.Log("Dégâts infligés à " + other.name);
         }
     }
 }
