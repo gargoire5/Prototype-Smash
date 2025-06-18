@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9097847986947357212}
   - component: {fileID: 5587003861196864069}
   - component: {fileID: 8617501241019017292}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 3869762963513458903}
   - component: {fileID: 1705467932354151630}
   - component: {fileID: 9164150410479846772}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 9221168945216666780}
   - component: {fileID: 4644490535432676013}
   - component: {fileID: 8143683820795993001}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 8927618371692816033}
   - component: {fileID: 1885946933012457342}
   - component: {fileID: 2191487848620290708}
+  - component: {fileID: 5876814749752375894}
   m_Layer: 0
   m_Name: Fugue
   m_TagString: Untagged
@@ -643,6 +644,7 @@ MonoBehaviour:
   ultimateDelay: 30
   ultimateRate: 0.2
   ultimateDamage: 20
+  currentAttackType: 0
   ultObject: {fileID: 2648783914185132204, guid: 2c19d1d7bd3f2194a8b11be8191f01d3, type: 3}
   skillObject: {fileID: 737210374324018595, guid: 32bccc9f3620b924b9034a698bea595e, type: 3}
 --- !u!114 &2191487848620290708
@@ -675,3 +677,17 @@ MonoBehaviour:
   m_DefaultActionMap: Player1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5876814749752375894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850513039963865705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f44999ead69f3a4daeb8f8ba80b323d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 0
+  knockbackMultiplier: 1.5

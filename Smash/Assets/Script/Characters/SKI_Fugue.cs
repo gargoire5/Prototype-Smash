@@ -5,6 +5,7 @@ using UnityEngine;
 public class SKI_Fugue : MonoBehaviour
 {
     private float _speed = 10.0f;
+    private int _direction = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,17 @@ public class SKI_Fugue : MonoBehaviour
 
     public void SetDirection(int direction)
     {
-        _speed *= direction;
+        _direction = direction;
+        _speed *= _direction;
+    }
+
+    public int GetDirection()
+    {
+        return _direction;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
     }
 }
