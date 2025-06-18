@@ -66,6 +66,13 @@ public class PlayerController : MonoBehaviour
 
     void Jump(InputAction.CallbackContext obj)
     {
+        var attackScript = GetComponent<CharacterAttack>();
+        if (attackScript != null && attackScript.IsTryingToAttackUp())
+        {
+            Debug.Log("Annulation du saut : attaque vers le haut");
+            return;
+        }
+
         if (numJump > 0)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
