@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
@@ -8,11 +8,8 @@ public class Hitbox : MonoBehaviour
 
     private void Start()
     {
-        if (owner == null)
-        {
-            if (transform.parent != null)
-                transform.parent.TryGetComponent<CharacterAttack>(out owner);
-        }
+        if (owner == null && transform.parent != null)
+            transform.parent.TryGetComponent(out owner);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,6 +20,7 @@ public class Hitbox : MonoBehaviour
         if (!other.TryGetComponent(out DamageReceiver receiver))
             return;
 
+        // Dégâts dynamiques selon le type d’attaque
         float actualDamage = damage;
         float knockbackForce = 0f;
 
@@ -43,46 +41,29 @@ public class Hitbox : MonoBehaviour
         }
 
         Vector3 direction = (other.transform.position - owner.transform.position).normalized;
-
         receiver.TakeDamage(actualDamage, direction * knockbackForce);
+        Debug.Log($"{owner.name} inflige {actualDamage} dmg et {knockbackForce} knockback à {other.name}");
 
-        if (owner.currentAttackType == AttackType.Skill)
+        if (owner.currentAttackType == AttackType.Skill && owner is Player1 p1 && p1.IsDashing())
         {
-            if (other.TryGetComponent(out Rigidbody rb))
-            {
-                owner.StartCoroutine(FreezeAndTeleportBehind(other.transform, direction));
-            }
-
-            Vector3 direction = (other.transform.position - owner.transform.position).normalized;
-            receiver.TakeDamage(actualDamage, direction * knockbackForce);
-            Debug.Log($"{owner.name} inflige {actualDamage} dégâts et {knockbackForce} de knockback à {other.name}");
+            owner.StartCoroutine(FreezeAndTeleportBehind(other.transform, p1.GetDashDirection()));
         }
-
-        Debug.Log($"{owner.name} inflige {actualDamage} dégâts et {knockbackForce} knockback à {other.name}");
     }
-    private IEnumerator FreezeAndTeleportBehind(Transform target, Vector3 direction)
+
+    private IEnumerator FreezeAndTeleportBehind(Transform target, Vector3 dashDirection)
     {
-        Rigidbody rb = target.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-        }
+        if (!target.TryGetComponent(out Rigidbody rb))
+            yield break;
 
-        //freeze 0.5 secondes
+        rb.constraints = RigidbodyConstraints.FreezeAll;
         yield return new WaitForSeconds(0.5f);
+        rb.constraints = RigidbodyConstraints.None;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
 
-        if (rb != null)
-        {
-            rb.constraints = RigidbodyConstraints.None;
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-        }
+        float zOffset = (dashDirection.z > 0) ? 1f : -1f;
+        Vector3 newPosition = target.position + new Vector3(0, 0, zOffset);
+        owner.transform.position = newPosition;
 
-        //calcule la direction Z du dash
-        float offsetZ = direction.z >= 0 ? 1.5f : -1.5f;
-
-        //déplacement derrière
-        Vector3 newPos = target.position + new Vector3(0, 0, offsetZ);
-        owner.transform.position = newPos;
+        Debug.Log($"{owner.name} se déplace derrière {target.name}");
     }
-
 }
