@@ -5,6 +5,13 @@ using UnityEngine;
 public class Charac_Deku : CharacterAttack
 {
 
+    [SerializeField]
+    private GameObject skillObject;
+    [SerializeField]
+    private GameObject skillObjectcord;
+    [SerializeField]
+    private float skillForce;
+
     private void Start()
     {
         //Fields to modify when making a character
@@ -24,7 +31,7 @@ public class Charac_Deku : CharacterAttack
         skillDelay = 0.0f;
         skillRate = 3.0f;
 
-        ultimateDuration = 10f;
+        ultimateDuration = 20f;
         ultimateDelay = 0.0f;
         ultimateRate = 20.0f;
     }
@@ -43,6 +50,27 @@ public class Charac_Deku : CharacterAttack
     {
         base.SkillAttack();
 
+        GameObject currentSkill = Instantiate(skillObject, selectedHitbox.transform.position, selectedHitbox.transform.rotation);
+
+        GameObject fouet = Instantiate(skillObjectcord, Vector3.zero, Quaternion.identity);
+        fouet.GetComponent<Corde>().Setbout(this.gameObject, currentSkill);
+
+        if(selectedHitbox == hitboxRight)
+        {
+            currentSkill.GetComponent<Rigidbody>().AddForce(Vector3.forward * skillForce, ForceMode.Impulse);
+        }
+        else if (selectedHitbox == hitboxLeft)
+        {
+            currentSkill.GetComponent<Rigidbody>().AddForce(-Vector3.forward * skillForce, ForceMode.Impulse);
+        }else
+        {
+            currentSkill.GetComponent<Rigidbody>().AddForce(Vector3.up * skillForce, ForceMode.Impulse);
+        }
+
+        
+
+        Destroy(currentSkill, 3);
+        Destroy(fouet, 3);
         
     }
 
@@ -50,7 +78,7 @@ public class Charac_Deku : CharacterAttack
     {
         base.UltimateAttack();
 
-        StartCoroutine(UltAttack(GetComponent<PlayerController>()));
+        StartCoroutine(UltBoost());
     }
 
     protected override void ParadeAction()
@@ -58,24 +86,27 @@ public class Charac_Deku : CharacterAttack
 
     }
 
-    private IEnumerator UltAttack(PlayerController playerController)
+    private IEnumerator UltBoost()
     {
-        float startspeed = playerController.moveForce;
+        float startspeed = GetComponent<PlayerController>().moveForce;
+        float startJump = GetComponent<PlayerController>().bounceForce;
         float startBasicAttackDamage = basicAttackDamage;
         float startChargeAttackDamage = chargeAttackDamage;
         float startSkillRate = skillRate;
 
         yield return new WaitForSeconds(ultimateDelay);
 
-        playerController.moveForce *= 2;
+        GetComponent<PlayerController>().moveForce *= 2;
+        GetComponent<PlayerController>().bounceForce *= 1.2f;
         basicAttackDamage *= 2;
         chargeAttackDamage *= 2;
         skillRate /= 2;
 
+
         yield return new WaitForSeconds(ultimateDuration);
 
-        playerController.moveForce = startspeed;
-
+        GetComponent<PlayerController>().moveForce = startspeed;
+        GetComponent<PlayerController>().bounceForce = startJump;
         basicAttackDamage = startBasicAttackDamage;
         chargeAttackDamage = startChargeAttackDamage;
         skillRate = startSkillRate;

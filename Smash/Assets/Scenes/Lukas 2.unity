@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 7374453821944826632}
   - component: {fileID: 6168902682807044945}
   - component: {fileID: 8035228364406643032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 3288039833495810499}
   - component: {fileID: 1134436700680811994}
   - component: {fileID: 7437910399528350816}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +631,7 @@ Transform:
   m_GameObject: {fileID: 8423981055444956029}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.73, z: -3.54}
+  m_LocalPosition: {x: 0, y: 1.73, z: -2.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 7488767561932492168}
   - component: {fileID: 6368606298104402873}
   - component: {fileID: 7570959368801282749}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1060,6 +1060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fugue
       objectReference: {fileID: 0}
+    - target: {fileID: 7850513039963865705, guid: 2e9c0f64493f8a14fa958a545b553fc2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 9097847986947357212, guid: 2e9c0f64493f8a14fa958a545b553fc2, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1117,7 +1121,7 @@ GameObject:
   - component: {fileID: 467499910290998144}
   - component: {fileID: 8423981055444956030}
   - component: {fileID: 8423981055444956031}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Deku
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1146,7 +1150,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   isHoldingAttack: 0
-  canUseUltimate: 0
+  canUseUltimate: 1
   canUseSkill: 1
   selectedHitbox: {fileID: 0}
   hitboxRight: {fileID: 4147697146262745853}
@@ -1171,6 +1175,9 @@ MonoBehaviour:
   ultimateRate: 0
   ultimateDamage: 0
   currentAttackType: 0
+  skillObject: {fileID: 6685806448119423862, guid: e81466d1afd1f9d4ca045b132d570a11, type: 3}
+  skillObjectcord: {fileID: 5711690926014349854, guid: 2bf7dd27fc1845944b91cb02a2abc139, type: 3}
+  skillForce: 10
 --- !u!114 &8423981055444956031
 MonoBehaviour:
   m_ObjectHideFlags: 0
