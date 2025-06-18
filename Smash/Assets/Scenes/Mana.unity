@@ -1846,7 +1846,7 @@ GameObject:
   - component: {fileID: 5131714548194054445}
   - component: {fileID: 8429764141843976564}
   - component: {fileID: 5684118887891551101}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1866,7 +1866,7 @@ GameObject:
   - component: {fileID: 919199771512450022}
   - component: {fileID: 3377283793956794367}
   - component: {fileID: 5068825043649605189}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2266,6 +2266,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e779b177b6a8f478c34cb1b36472d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpAction:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 098551a0-4104-411a-be9d-a58c6eea9fed
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  isHoldingAttack: 0
+  canUseUltimate: 1
+  canUseSkill: 1
+  selectedHitbox: {fileID: 0}
+  hitboxRight: {fileID: 1796730679264864472}
+  hitboxLeft: {fileID: 2208812884669622394}
+  hitboxUp: {fileID: 7685331421500915327}
+  isAttacking: 0
+  basicAttackDuration: 0
+  basicAttackDelay: 0
+  basicAttackRate: 0
+  basicAttackDamage: 0
+  chargeAttackDuration: 0
+  chargeAttackDelay: 0
+  chargeAttackRate: 0
+  chargeAttackDamage: 0
+  chargeTimeTreshold: 0
+  skillDuration: 0
+  skillDelay: 0
+  skillRate: 0
+  skillDamage: 0
+  ultimateDuration: 0
+  ultimateDelay: 0
+  ultimateRate: 0
+  ultimateDamage: 0
+  currentAttackType: 0
+  ultObject: {fileID: 0}
+  skillObject: {fileID: 0}
 --- !u!1 &7538288991735718005
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,7 +2334,7 @@ GameObject:
   - component: {fileID: 5083899836264142765}
   - component: {fileID: 8719254971336395164}
   - component: {fileID: 5220132604741972120}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxCollisionUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
