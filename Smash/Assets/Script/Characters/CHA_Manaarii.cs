@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CHA_Fugue : CharacterAttack
+public class CHA_Manaarii : CharacterAttack
 {
     [SerializeField]
     private GameObject ultObject;

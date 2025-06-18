@@ -18,41 +18,33 @@ public class Hitbox : MonoBehaviour
     {
         other.TryGetComponent<DamageReceiver>(out DamageReceiver receiver);
 
-        if (owner != null)
+        if (owner != null && receiver != null)
         {
-            if (owner != null)
+            if (other.gameObject == owner.gameObject)
+                return;
+
+            float actualDamage = damage;
+            float knockbackForce = 0f;
+
+            switch (owner.currentAttackType)
             {
-                if (other.gameObject == owner.gameObject)
-                    return;
-
-                float actualDamage = damage;
-                float knockbackForce = 0f;
-
-                switch (owner.currentAttackType)
-                {
-                    case AttackType.Basic:
-                        actualDamage = owner.BasicDamage;
-                        knockbackForce = owner.BasicKnockback;
-                        break;
-                    case AttackType.Skill:
-                        actualDamage = owner.SkillDamage;
-                        knockbackForce = owner.SkillKnockback;
-                        break;
-                    case AttackType.Ultimate:
-                        actualDamage = owner.UltimateDamage;
-                        knockbackForce = owner.UltimateKnockback;
-                        break;
-                }
-
-                Vector3 direction = (other.transform.position - owner.transform.position).normalized;
-                receiver.TakeDamage(actualDamage, direction * knockbackForce);
-                Debug.Log($"{owner.name} inflige {actualDamage} dégâts et {knockbackForce} de knockback à {other.name}");
+                case AttackType.Basic:
+                    actualDamage = owner.BasicDamage;
+                    knockbackForce = owner.BasicKnockback;
+                    break;
+                case AttackType.Skill:
+                    actualDamage = owner.SkillDamage;
+                    knockbackForce = owner.SkillKnockback;
+                    break;
+                case AttackType.Ultimate:
+                    actualDamage = owner.UltimateDamage;
+                    knockbackForce = owner.UltimateKnockback;
+                    break;
             }
-            else
-            {
-                Vector3 direction = (other.transform.position - transform.position).normalized;
-                receiver.TakeDamage(damage, direction);
-            }
+
+            Vector3 direction = (other.transform.position - owner.transform.position).normalized;
+            receiver.TakeDamage(actualDamage, direction * knockbackForce);
+            Debug.Log($"{owner.name} inflige {actualDamage} dégâts et {knockbackForce} de knockback à {other.name}");
         }
         else if (receiver != null)
         {
