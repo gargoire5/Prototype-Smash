@@ -188,7 +188,12 @@ public abstract class CharacterAttack : MonoBehaviour
     protected virtual void BasicAttack()
     {
         Debug.Log("BasicAttack appelée");
-
+        if (jumpAction.IsPressed())
+            selectedHitbox = hitboxUp;
+        else if (lastMoveDirection.x > 0)
+            selectedHitbox = hitboxRight;
+        else
+            selectedHitbox = hitboxLeft;
         StartCoroutine(ActivateHitboxCollider(selectedHitbox));
     }
 
