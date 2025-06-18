@@ -15,7 +15,7 @@ public class CHA_Fugue : CharacterAttack
     {
         //Fields to modify when making a character
 
-        basicAttackDuration = 0.2f;
+        /*basicAttackDuration = 0.2f;
         basicAttackDelay = 0.1f;
         basicAttackRate = 0.2f;
         basicAttackDamage = 5.0f;
@@ -34,7 +34,7 @@ public class CHA_Fugue : CharacterAttack
         ultimateDuration = 1f;
         ultimateDelay = 0.0f;
         ultimateRate = 30.0f;
-        ultimateDamage = 20.0f;
+        ultimateDamage = 20.0f;*/
     }
 
     protected override void BasicAttack()
@@ -63,7 +63,7 @@ public class CHA_Fugue : CharacterAttack
         }
     }
 
-    protected override void UltimeAttack()
+   protected override void UltimeAttack()
     {
         if (!canUseUltimate) return;
 

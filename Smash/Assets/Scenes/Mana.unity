@@ -546,6 +546,7 @@ MonoBehaviour:
   hitboxLeft: {fileID: 258465639}
   hitboxUp: {fileID: 1834168057}
   isAttacking: 0
+  lastMoveDirection: {x: 1, y: 0}
   basicAttackDuration: 0.2
   basicAttackDelay: 0
   basicAttackRate: 0.2
@@ -795,6 +796,7 @@ GameObject:
   - component: {fileID: 1266544902}
   - component: {fileID: 1266544903}
   - component: {fileID: 1266544904}
+  - component: {fileID: 1266544905}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -884,7 +886,7 @@ Transform:
   m_GameObject: {fileID: 1266544895}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.73, z: -1.5}
+  m_LocalPosition: {x: 0, y: 1.73, z: -1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -950,7 +952,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266544895}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e987ceb1dba2cd4895ba44b222dc99c, type: 3}
   m_Name: 
@@ -972,10 +974,11 @@ MonoBehaviour:
   hitboxLeft: {fileID: 1639864366}
   hitboxUp: {fileID: 788533867}
   isAttacking: 0
+  lastMoveDirection: {x: 1, y: 0}
   basicAttackDuration: 0.2
   basicAttackDelay: 0
   basicAttackRate: 0.2
-  basicAttackDamage: 5
+  basicAttackDamage: 2
   chargeAttackDuration: 0.2
   chargeAttackDelay: 0
   chargeAttackRate: 0.2
@@ -984,12 +987,14 @@ MonoBehaviour:
   skillDuration: 0.2
   skillDelay: 10
   skillRate: 0.2
-  skillDamage: 10
+  skillDamage: 35
   ultimateDuration: 0.2
   ultimateDelay: 30
   ultimateRate: 0.2
   ultimateDamage: 20
   currentAttackType: 0
+  dashDistance: 5
+  dashDuration: 0.2
 --- !u!114 &1266544903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,6 +1039,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePercent: 0
   knockbackMultiplier: 1.5
+--- !u!114 &1266544905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266544895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6818c0811744e134faa62aebc64854ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpAction:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 536dfe77-e5ab-45ef-8577-d78af0f6ccff
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  isHoldingAttack: 0
+  canUseUltimate: 0
+  canUseSkill: 1
+  selectedHitbox: {fileID: 0}
+  hitboxRight: {fileID: 2058455418}
+  hitboxLeft: {fileID: 1639864366}
+  hitboxUp: {fileID: 788533867}
+  isAttacking: 0
+  lastMoveDirection: {x: 1, y: 0}
+  basicAttackDuration: 0
+  basicAttackDelay: 0
+  basicAttackRate: 0
+  basicAttackDamage: 10
+  chargeAttackDuration: 0
+  chargeAttackDelay: 0
+  chargeAttackRate: 0
+  chargeAttackDamage: 0
+  chargeTimeTreshold: 0
+  skillDuration: 0
+  skillDelay: 0
+  skillRate: 0
+  skillDamage: 0
+  ultimateDuration: 0
+  ultimateDelay: 0
+  ultimateRate: 0
+  ultimateDamage: 0
+  currentAttackType: 0
+  ultObject: {fileID: 0}
+  skillObject: {fileID: 0}
 --- !u!1 &1639864366
 GameObject:
   m_ObjectHideFlags: 0
