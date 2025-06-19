@@ -330,7 +330,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925275023}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4351d2a0901dda343bf9cf92e7474e26, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -587,7 +587,7 @@ MonoBehaviour:
   MoveAction: {fileID: -8076291310143691428, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
   JumpAction: {fileID: 900505413667631089, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
   speed: 10
-  moveForce: 15
+  moveForce: 20
   rb: {fileID: 7201286300999391157}
   bounceForce: 10
   maxHeals: 10
@@ -649,7 +649,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8423981055444956029}
-  m_Material: {fileID: 13400000, guid: 4351d2a0901dda343bf9cf92e7474e26, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -851,7 +851,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!4 &7205495785385433186
 Transform:
   m_ObjectHideFlags: 0
@@ -997,6 +997,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2765040615149166275, guid: 2e9c0f64493f8a14fa958a545b553fc2, type: 3}
+      propertyPath: moveForce
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6583765483852238534, guid: 2e9c0f64493f8a14fa958a545b553fc2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

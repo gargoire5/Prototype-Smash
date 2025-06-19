@@ -26,6 +26,6 @@ public class ULT_Manaarii : MonoBehaviour
             rb.AddForce(dir, ForceMode.Impulse);
         }
 
-        transform.Rotate(0, 1, 0);
+        transform.Rotate(0, 2, 0);
     }
 }

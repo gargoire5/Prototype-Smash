@@ -67,19 +67,19 @@ public class CHA_Manaarii : CharacterAttack
 
     private IEnumerator UltAttack(GameObject hitbox)
     {
-        yield return new WaitForSeconds(ultimateDelay);
+        yield return new WaitForSeconds(UltimateDelay);
 
         int direction = 1;
         if (selectedHitbox == hitboxLeft)
             direction = -1;
 
         GameObject currentHitbox = Instantiate(hitbox, selectedHitbox.transform.position, selectedHitbox.transform.rotation);
-        currentHitbox.GetComponent<Rigidbody>().AddForce(0, 0, 10 * direction);
+        currentHitbox.GetComponent<Hitbox>().owner = this;
+        currentHitbox.GetComponent<Rigidbody>().AddForce(0, 0, 30 * direction, ForceMode.Impulse);
         currentHitbox.GetComponent<ULT_Manaarii>().manaarii = gameObject;
         currentHitbox.GetComponent<ULT_Manaarii>().isGoingBack = true;
 
-        yield return new WaitForSeconds(ultimateDuration);
-
+        yield return new WaitForSeconds(UltimateDuration);
         Destroy(currentHitbox);
     }
 }
