@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
@@ -7,50 +8,62 @@ public class Hitbox : MonoBehaviour
 
     private void Start()
     {
-        if (owner == null)
-        {
-            if (transform.parent != null)
-                transform.parent.TryGetComponent<CharacterAttack>(out owner);
-        }
+        if (owner == null && transform.parent != null)
+            transform.parent.TryGetComponent(out owner);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        other.TryGetComponent<DamageReceiver>(out DamageReceiver receiver);
+        if (owner == null || other.gameObject == owner.gameObject)
+            return;
 
-        if (owner != null && receiver != null)
+        if (!other.TryGetComponent(out DamageReceiver receiver))
+            return;
+
+        // Dégâts dynamiques selon le type d’attaque
+        float actualDamage = damage;
+        float knockbackForce = 0f;
+
+        switch (owner.currentAttackType)
         {
-            if (other.gameObject == owner.gameObject)
-                return;
-
-            float actualDamage = damage;
-            float knockbackForce = 0f;
-
-            switch (owner.currentAttackType)
-            {
-                case AttackType.Basic:
-                    actualDamage = owner.BasicDamage;
-                    knockbackForce = owner.BasicKnockback;
-                    break;
-                case AttackType.Skill:
-                    actualDamage = owner.SkillDamage;
-                    knockbackForce = owner.SkillKnockback;
-                    break;
-                case AttackType.Ultimate:
-                    actualDamage = owner.UltimateDamage;
-                    knockbackForce = owner.UltimateKnockback;
-                    break;
-            }
-
-            Vector3 direction = (other.transform.position - owner.transform.position).normalized;
-            receiver.TakeDamage(actualDamage, direction * knockbackForce);
-            Debug.Log($"{owner.name} inflige {actualDamage} dégâts et {knockbackForce} de knockback à {other.name}");
+            case AttackType.Basic:
+                actualDamage = owner.BasicDamage;
+                knockbackForce = owner.BasicKnockback;
+                break;
+            case AttackType.Skill:
+                actualDamage = owner.SkillDamage;
+                knockbackForce = owner.SkillKnockback;
+                break;
+            case AttackType.Ultimate:
+                actualDamage = owner.UltimateDamage;
+                knockbackForce = owner.UltimateKnockback;
+                break;
         }
-        else if (receiver != null)
+
+        Vector3 direction = (other.transform.position - owner.transform.position).normalized;
+        receiver.TakeDamage(actualDamage, direction * knockbackForce);
+        Debug.Log($"{owner.name} inflige {actualDamage} dmg et {knockbackForce} knockback à {other.name}");
+
+        if (owner.currentAttackType == AttackType.Skill && owner is Player1 p1 && p1.IsDashing())
         {
-            Vector3 direction = (other.transform.position - transform.position).normalized;
-            receiver.TakeDamage(damage, direction);
-            Debug.Log("Dégâts infligés à " + other.name);
+            owner.StartCoroutine(FreezeAndTeleportBehind(other.transform, p1.GetDashDirection()));
         }
+    }
+
+    private IEnumerator FreezeAndTeleportBehind(Transform target, Vector3 dashDirection)
+    {
+        if (!target.TryGetComponent(out Rigidbody rb))
+            yield break;
+
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        yield return new WaitForSeconds(0.5f);
+        rb.constraints = RigidbodyConstraints.None;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        float zOffset = (dashDirection.z > 0) ? 1f : -1f;
+        Vector3 newPosition = target.position + new Vector3(0, 0, zOffset);
+        owner.transform.position = newPosition;
+
+        Debug.Log($"{owner.name} se déplace derrière {target.name}");
     }
 }

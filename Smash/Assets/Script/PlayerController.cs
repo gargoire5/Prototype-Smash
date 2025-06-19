@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float maxHeals = 10;
     public float heals;
 
+    public int maxJump = 3;
     public int numJump = 3;
     private float lastDirc;
 

@@ -266,7 +266,7 @@ public abstract class CharacterAttack : MonoBehaviour
         currentAttackType = AttackType.Skill;
         StartCoroutine(UseSkill());
     }
-    protected virtual void UltimateAttack()
+    protected virtual void UltimeAttack()
     {
         Debug.Log("Ultimate");
         currentAttackType = AttackType.Ultimate;
