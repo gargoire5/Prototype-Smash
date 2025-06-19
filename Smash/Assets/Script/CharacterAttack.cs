@@ -35,33 +35,34 @@ public abstract class CharacterAttack : MonoBehaviour
     public GameObject hitboxUp;
     public bool isAttacking = false;
 
-    private Vector2 lastMoveDirection = Vector2.right;
+    public Vector2 lastMoveDirection = Vector2.right;
 
     //Fields to modify while making a character
     [Header("Attack Data - Basic Attack")]
-    public float basicAttackDuration;
-    public float basicAttackDelay;
-    public float basicAttackRate;
-    public float basicAttackDamage;
+    [SerializeField] public float basicAttackDuration;
+    [SerializeField] public float basicAttackDelay;
+    [SerializeField] public float basicAttackRate;
+    [SerializeField] public float basicAttackDamage;
 
     [Header("Attack Data - Charge Attack")]
-    public float chargeAttackDuration;
-    public float chargeAttackDelay;
-    public float chargeAttackRate;
-    public float chargeAttackDamage;
-    public float chargeTimeTreshold;
+    [SerializeField] public float chargeAttackDuration;
+    [SerializeField] public float chargeAttackDelay;
+    [SerializeField] public float chargeAttackRate;
+    [SerializeField] public float chargeAttackDamage;
+    [SerializeField] public float chargeTimeTreshold;
 
     [Header("Attack Data - Skill")]
-    public float skillDuration;
-    public float skillDelay;
-    public float skillRate;
-    public float skillDamage;
+    [SerializeField] public float skillDuration;
+    [SerializeField] public float skillDelay;
+    [SerializeField] public float skillRate;
+    [SerializeField] public float skillDamage;
 
     [Header("Attack Data - Ultimate")]
-    public float ultimateDuration;
-    public float ultimateDelay;
-    public float ultimateRate;
-    public float ultimateDamage;
+    [SerializeField] public float ultimateDuration;
+    [SerializeField] public float ultimateDelay;
+    [SerializeField] public float ultimateRate;
+    [SerializeField] public float ultimateDamage;
+
 
     public AttackType currentAttackType = AttackType.Basic;
 
@@ -127,7 +128,7 @@ public abstract class CharacterAttack : MonoBehaviour
         ultimeAttackAction.performed += _ =>
         {
             if (canUseUltimate)
-                UltimateAttack();
+                UltimeAttack();
         };
 
         attackAction.started += _ =>
@@ -151,7 +152,7 @@ public abstract class CharacterAttack : MonoBehaviour
     protected virtual void OnDisable()
     {
         if (skillAttackAction != null) skillAttackAction.performed -= _ => SkillAttack();
-        if (ultimeAttackAction != null) ultimeAttackAction.performed -= _ => UltimateAttack();
+        if (ultimeAttackAction != null) ultimeAttackAction.performed -= _ => UltimeAttack();
         if (attackAction != null)
         {
             attackAction.started -= _ => { };
@@ -259,11 +260,13 @@ public abstract class CharacterAttack : MonoBehaviour
     protected abstract void ChargeAttack();
     protected virtual void SkillAttack()
     {
+        if (!canUseSkill)
+            return;
         Debug.Log("Skill");
         currentAttackType = AttackType.Skill;
         StartCoroutine(UseSkill());
     }
-    protected virtual void UltimateAttack()
+    protected virtual void UltimeAttack()
     {
         Debug.Log("Ultimate");
         currentAttackType = AttackType.Ultimate;
