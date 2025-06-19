@@ -195,7 +195,6 @@ public abstract class CharacterAttack : MonoBehaviour
 
     protected virtual void BasicAttack()
     {
-        Debug.Log("BasicAttack appelée");
         currentAttackType = AttackType.Basic;
 
         if (jumpAction.IsPressed())
@@ -209,7 +208,6 @@ public abstract class CharacterAttack : MonoBehaviour
 
     public IEnumerator ActivateHitboxCollider(GameObject hitbox)
     {
-        Debug.Log($"Activation demandée pour : {hitbox?.name}");
 
         if (hitbox == null)
         {
@@ -268,13 +266,12 @@ public abstract class CharacterAttack : MonoBehaviour
     {
         if (!canUseSkill)
             return;
-        Debug.Log("Skill");
+
         currentAttackType = AttackType.Skill;
         StartCoroutine(UseSkill());
     }
     protected virtual void UltimateAttack()
     {
-        Debug.Log("Ultimate");
         currentAttackType = AttackType.Ultimate;
         StartCoroutine(UseUlt());
     }

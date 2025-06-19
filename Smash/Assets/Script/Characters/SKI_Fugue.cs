@@ -32,6 +32,6 @@ public class SKI_Fugue : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        Destroy(gameObject, 0.2f);
     }
 }

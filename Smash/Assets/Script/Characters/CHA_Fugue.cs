@@ -14,12 +14,11 @@ public class CHA_Fugue : CharacterAttack
     protected override void BasicAttack()
     {
         base.BasicAttack();
-        Debug.Log("BasicAttack bleb");
     }
 
     protected override void ChargeAttack()
     {
-        Debug.Log("ChargeAttack");
+
     }
 
     protected override void SkillAttack()
@@ -31,6 +30,7 @@ public class CHA_Fugue : CharacterAttack
 
         GameObject currentSkill = Instantiate(skillObject, selectedHitbox.transform.position, selectedHitbox.transform.rotation);
         SKI_Fugue skill = currentSkill.GetComponent<SKI_Fugue>();
+        currentSkill.GetComponent<Hitbox>().owner = this;
 
         if (selectedHitbox == hitboxLeft)
             skill.SetDirection(-1);

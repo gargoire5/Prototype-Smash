@@ -23,29 +23,41 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     RawImage Player2Sprite;
 
-    private MatchManager _matchManager = null;
+    public MatchManager _matchManager = null;
 
     private DamageReceiver _player1Dmg;
     private DamageReceiver _player2Dmg;
 
+    private bool _doOnce = false;
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (_matchManager != null)
-        {
-            Player1Percent.text = _player1Dmg.damagePercent.ToString();
-            Player2Percent.text = _player2Dmg.damagePercent.ToString();
+        { 
+            _player1Dmg = _matchManager.Player1Character.gameObject.GetComponent<DamageReceiver>();
+            _player2Dmg = _matchManager.Player2Character.gameObject.GetComponent<DamageReceiver>();
+
+            Player1Percent.text = _player1Dmg.damagePercent.ToString() + "%";
+            Player2Percent.text = _player2Dmg.damagePercent.ToString() + "%";
 
             Player1Lives.text = _matchManager.Player1Lives.ToString();
             Player2Lives.text = _matchManager.Player2Lives.ToString();
+
+            if (_doOnce == false)
+            {
+                Player1Sprite.texture = _matchManager.Player1Character.CharacterRender;
+                Player2Sprite.texture = _matchManager.Player2Character.CharacterRender;
+
+                _doOnce = true;
+            }
+
         }
     }
 
     public void SetManager(MatchManager matchManagerToSet)
     {
         _matchManager = matchManagerToSet;
-        _player1Dmg = _matchManager.Player1Character.gameObject.GetComponent<DamageReceiver>();
-        _player2Dmg = _matchManager.Player2Character.gameObject.GetComponent<DamageReceiver>();
     }
 
 }

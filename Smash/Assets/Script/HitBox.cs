@@ -15,10 +15,16 @@ public class Hitbox : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (owner == null || other.gameObject == owner.gameObject)
+        {
+            Debug.Log("Pas de parent");
             return;
+        }
 
         if (!other.TryGetComponent(out DamageReceiver receiver))
+        {
+            Debug.Log("Pas de receiver");
             return;
+        }
 
         // Dégâts dynamiques selon le type d’attaque
         float actualDamage = damage;

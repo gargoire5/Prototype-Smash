@@ -564,7 +564,7 @@ MonoBehaviour:
   MoveAction: {fileID: -8076291310143691428, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
   JumpAction: {fileID: 900505413667631089, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
   speed: 5
-  moveForce: 10
+  moveForce: 15
   rb: {fileID: 8927618371692816033}
   bounceForce: 20
   maxHeals: 10
@@ -629,7 +629,7 @@ MonoBehaviour:
   hitboxUp: {fileID: 6039968727213397326}
   isAttacking: 0
   lastMoveDirection: {x: 1, y: 0}
-  CharacterRender: {fileID: 0}
+  CharacterRender: {fileID: 2800000, guid: 3f5e4e7b5528fdc43a52b4620ffb4a13, type: 3}
   basicAttackDuration: 0.2
   basicAttackDelay: 0
   basicAttackRate: 0.2
@@ -647,8 +647,8 @@ MonoBehaviour:
   skillDamage: 10
   skillKnockback: 5
   ultimateDuration: 0.2
-  ultimateDelay: 30
-  ultimateRate: 0.2
+  ultimateDelay: 0.2
+  ultimateRate: 30
   ultimateDamage: 20
   ultimateKnockback: 10
   currentAttackType: 0

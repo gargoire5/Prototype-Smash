@@ -25,6 +25,8 @@ public class MatchManager : MonoBehaviour
     {
         _manager = FindFirstObjectByType<SmashGameManager>();
         _manager.SetManager(this);
+
+        FindFirstObjectByType<UIManager>().SetManager(this);
     }
 
     // Update is called once per frame
@@ -72,8 +74,6 @@ public class MatchManager : MonoBehaviour
         _player2 = Instantiate(player2Prefab);
         _player2.transform.position = _player2Spawn.position;
         Player2Character = _player2.GetComponent<CharacterAttack>();
-
-        Debug.Log("Je commence");
     }
 
     public void SetManager(SmashGameManager managerToSet)

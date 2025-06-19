@@ -358,6 +358,7 @@ MonoBehaviour:
   hitboxUp: {fileID: 2823542764065264010}
   isAttacking: 0
   lastMoveDirection: {x: 1, y: 0}
+  CharacterRender: {fileID: 2800000, guid: a385d7efd22a7a340b62aa67f9e29234, type: 3}
   basicAttackDuration: 0.4
   basicAttackDelay: 0.05
   basicAttackRate: 0.1
@@ -369,7 +370,7 @@ MonoBehaviour:
   chargeAttackDamage: 10
   chargeAttackKnockback: 8
   chargeTimeTreshold: 0.5
-  skillDuration: 5
+  skillDuration: 0.1
   skillDelay: 0
   skillRate: 20
   skillDamage: 18
