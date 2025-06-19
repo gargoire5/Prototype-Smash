@@ -322,7 +322,7 @@ MonoBehaviour:
   MoveAction: {fileID: -8076291310143691428, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
   JumpAction: {fileID: 900505413667631089, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
   speed: 5
-  moveForce: 10
+  moveForce: 15
   rb: {fileID: 2239972008572523177}
   bounceForce: 20
   maxHeals: 10
@@ -416,25 +416,26 @@ MonoBehaviour:
   hitboxLeft: {fileID: 6009574637966182779}
   hitboxUp: {fileID: 7156003919242792629}
   isAttacking: 0
-  basicAttackDuration: 0
-  basicAttackDelay: 0
-  basicAttackRate: 0
-  basicAttackDamage: 0
-  chargeAttackDuration: 0
+  basicAttackDuration: 0.15
+  basicAttackDelay: 0.05
+  basicAttackRate: 0.18
+  basicAttackDamage: 4
+  chargeAttackDuration: 0.2
   chargeAttackDelay: 0
-  chargeAttackRate: 0
-  chargeAttackDamage: 0
-  chargeTimeTreshold: 0
-  skillDuration: 0
+  chargeAttackRate: 0.2
+  chargeAttackDamage: 7
+  chargeTimeTreshold: 0.5
+  skillDuration: 3
   skillDelay: 0
-  skillRate: 0
+  skillRate: 0.5
   skillDamage: 0
-  ultimateDuration: 0
+  ultimateDuration: 15
   ultimateDelay: 0
-  ultimateRate: 0
+  ultimateRate: 20
   ultimateDamage: 0
   currentAttackType: 0
   corde: {fileID: 2566553800725868956}
+  multipUlt: 3
 --- !u!114 &1240230391151364092
 MonoBehaviour:
   m_ObjectHideFlags: 0

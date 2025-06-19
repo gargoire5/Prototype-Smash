@@ -5,30 +5,7 @@ using UnityEngine;
 public class Charac_Deku : CharacterAttack
 {
     public Corde corde;
-
-    private void Start()
-    {
-        //Fields to modify when making a character
-
-        basicAttackDuration = 0.15f;
-        basicAttackDelay = 0.05f;
-        basicAttackRate = 0.18f;
-        basicAttackDamage = 4.0f;
-
-        chargeAttackDuration = 0.2f;
-        chargeAttackDelay = 0.0f;
-        chargeAttackRate = 0.2f;
-        chargeAttackDamage = 7f;
-        chargeTimeTreshold = 0.5f;
-
-        skillDuration = 0.2f;
-        skillDelay = 0.0f;
-        skillRate = 3.0f;
-
-        ultimateDuration = 20f;
-        ultimateDelay = 0.0f;
-        ultimateRate = 20.0f;
-    }
+    public float multipUlt;
     protected override void BasicAttack()
     {
         base.BasicAttack();
@@ -66,15 +43,16 @@ public class Charac_Deku : CharacterAttack
         float startBasicAttackDamage = basicAttackDamage;
         float startChargeAttackDamage = chargeAttackDamage;
         float startSkillRate = skillRate;
+        float startSpeedFouet = corde.speed;
 
         yield return new WaitForSeconds(ultimateDelay);
 
-        GetComponent<PlayerController>().moveForce *= 2;
-        GetComponent<PlayerController>().bounceForce *= 1.2f;
-        basicAttackDamage *= 2;
-        chargeAttackDamage *= 2;
-        skillRate /= 2;
-
+        GetComponent<PlayerController>().moveForce *= multipUlt;
+        GetComponent<PlayerController>().bounceForce *= (1 + multipUlt/10);
+        basicAttackDamage *= multipUlt;
+        chargeAttackDamage *= multipUlt;
+        skillRate /= multipUlt;
+        corde.speed *= multipUlt;
 
         yield return new WaitForSeconds(ultimateDuration);
 
@@ -83,6 +61,7 @@ public class Charac_Deku : CharacterAttack
         basicAttackDamage = startBasicAttackDamage;
         chargeAttackDamage = startChargeAttackDamage;
         skillRate = startSkillRate;
+        corde.speed = startSpeedFouet;
     }
 
 }

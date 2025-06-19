@@ -19,8 +19,8 @@ public class Corde : MonoBehaviour
 
     private GameObject currentSkill;
 
-    [SerializeField]
-    float speed = 10f;
+    
+    public float speed = 10f;
 
 
     void Update()
@@ -30,10 +30,12 @@ public class Corde : MonoBehaviour
         {
             resetComp();
         }
-
-        if (currentSkill.GetComponent<Debut_fouet>().iscollid && !isActivate)
+        if (currentSkill != null)
         {
-            Grab();
+            if (currentSkill.GetComponent<Debut_fouet>().iscollid && !isActivate)
+            {
+                Grab();
+            }
         }
 
         if (isActivate)
@@ -88,7 +90,7 @@ public class Corde : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, currentSkill.transform.position, speed * Time.deltaTime / Vector3.Distance(transform.position, currentSkill.transform.position));
 
         GetComponent<LineRenderer>().SetPosition(0, transform.position);
-        Debug.Log(Vector3.Distance(transform.position, currentSkill.transform.position));
+
         if(Vector3.Distance(transform.position, currentSkill.transform.position) < 1f)
         {
             resetComp();
