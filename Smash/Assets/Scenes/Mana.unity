@@ -379,6 +379,7 @@ MonoBehaviour:
   bounceForce: 10
   maxHeals: 10
   heals: 0
+  maxJump: 3
   numJump: 3
   gravityMulti: 3
 --- !u!65 &487742631
@@ -942,6 +943,7 @@ MonoBehaviour:
   bounceForce: 10
   maxHeals: 10
   heals: 0
+  maxJump: 3
   numJump: 3
   gravityMulti: 3
 --- !u!114 &1266544902
@@ -1833,7 +1835,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1856,7 +1858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2208812884669622394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,7 +1878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2245865138484557298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1897,6 +1899,7 @@ MonoBehaviour:
   bounceForce: 20
   maxHeals: 10
   heals: 0
+  maxJump: 3
   numJump: 3
   gravityMulti: 3
 --- !u!114 &2818185937390442917
@@ -2113,7 +2116,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2134,7 +2137,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2287,6 +2290,7 @@ MonoBehaviour:
   hitboxLeft: {fileID: 2208812884669622394}
   hitboxUp: {fileID: 7685331421500915327}
   isAttacking: 0
+  lastMoveDirection: {x: 1, y: 0}
   basicAttackDuration: 0
   basicAttackDelay: 0
   basicAttackRate: 0
@@ -2306,7 +2310,7 @@ MonoBehaviour:
   ultimateDamage: 0
   currentAttackType: 0
   ultObject: {fileID: 0}
-  skillObject: {fileID: 0}
+  skillObject: {fileID: 7848658739997207965, guid: 5ac2cdf65c920fe418c13daf74b72e3a, type: 3}
 --- !u!1 &7538288991735718005
 GameObject:
   m_ObjectHideFlags: 0
@@ -2344,7 +2348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8097134516515572644
 Transform:
   m_ObjectHideFlags: 0

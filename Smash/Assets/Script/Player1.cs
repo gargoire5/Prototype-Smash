@@ -65,7 +65,7 @@ public class Player1 : CharacterAttack
         StartCoroutine(UseSkill());
     }
 
-    protected override void UltimeAttack()
+    protected override void UltimateAttack()
     {
         currentAttackType = AttackType.Ultimate;
         base.BasicAttack();

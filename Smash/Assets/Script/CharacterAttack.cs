@@ -128,7 +128,7 @@ public abstract class CharacterAttack : MonoBehaviour
         ultimeAttackAction.performed += _ =>
         {
             if (canUseUltimate)
-                UltimeAttack();
+                UltimateAttack();
         };
 
         attackAction.started += _ =>
@@ -152,7 +152,7 @@ public abstract class CharacterAttack : MonoBehaviour
     protected virtual void OnDisable()
     {
         if (skillAttackAction != null) skillAttackAction.performed -= _ => SkillAttack();
-        if (ultimeAttackAction != null) ultimeAttackAction.performed -= _ => UltimeAttack();
+        if (ultimeAttackAction != null) ultimeAttackAction.performed -= _ => UltimateAttack();
         if (attackAction != null)
         {
             attackAction.started -= _ => { };
@@ -266,7 +266,7 @@ public abstract class CharacterAttack : MonoBehaviour
         currentAttackType = AttackType.Skill;
         StartCoroutine(UseSkill());
     }
-    protected virtual void UltimeAttack()
+    protected virtual void UltimateAttack()
     {
         Debug.Log("Ultimate");
         currentAttackType = AttackType.Ultimate;
