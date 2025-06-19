@@ -11,24 +11,6 @@ public class CHA_Manaarii : CharacterAttack
     [SerializeField]
     private GameObject skillObject;
 
-    public override float BasicDamage => 8f;
-    public override float BasicKnockback => 3f;
-    public override float BasicDuration => 0.4f;
-    public override float BasicDelay => 0.05f;
-    public override float BasicRate => 0.1f;
-
-    public override float SkillDamage => 18f;
-    public override float SkillKnockback => 17f;
-    public override float SkillDuration => 0.2f;
-    public override float SkillDelay => 0f;
-    public override float SkillRate => 10f;
-
-    public override float UltimateDamage => 10f;
-    public override float UltimateKnockback => 7f;
-    public override float UltimateDuration => 5f;
-    public override float UltimateDelay => 0f;
-    public override float UltimateRate => 20f;
-
     protected override void BasicAttack()
     {
         base.BasicAttack();

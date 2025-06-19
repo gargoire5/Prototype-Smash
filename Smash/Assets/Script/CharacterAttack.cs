@@ -37,18 +37,22 @@ public abstract class CharacterAttack : MonoBehaviour
 
     public Vector2 lastMoveDirection = Vector2.right;
 
+    public Texture CharacterRender;
+
     //Fields to modify while making a character
     [Header("Attack Data - Basic Attack")]
     [SerializeField] public float basicAttackDuration;
     [SerializeField] public float basicAttackDelay;
     [SerializeField] public float basicAttackRate;
     [SerializeField] public float basicAttackDamage;
+    [SerializeField] public float basicAttackKnockback;
 
     [Header("Attack Data - Charge Attack")]
     [SerializeField] public float chargeAttackDuration;
     [SerializeField] public float chargeAttackDelay;
     [SerializeField] public float chargeAttackRate;
     [SerializeField] public float chargeAttackDamage;
+    [SerializeField] public float chargeAttackKnockback;
     [SerializeField] public float chargeTimeTreshold;
 
     [Header("Attack Data - Skill")]
@@ -56,12 +60,14 @@ public abstract class CharacterAttack : MonoBehaviour
     [SerializeField] public float skillDelay;
     [SerializeField] public float skillRate;
     [SerializeField] public float skillDamage;
+    [SerializeField] public float skillKnockback;
 
     [Header("Attack Data - Ultimate")]
     [SerializeField] public float ultimateDuration;
     [SerializeField] public float ultimateDelay;
     [SerializeField] public float ultimateRate;
     [SerializeField] public float ultimateDamage;
+    [SerializeField] public float ultimateKnockback;
 
 
     public AttackType currentAttackType = AttackType.Basic;
@@ -88,10 +94,10 @@ public abstract class CharacterAttack : MonoBehaviour
     public virtual float UltimateDelay => ultimateDelay;
     public virtual float UltimateRate => ultimateRate;
 
-    public virtual float BasicKnockback => 5f;
-    public virtual float ChargeKnockback => 7f;
-    public virtual float SkillKnockback => 10f;
-    public virtual float UltimateKnockback => 15f;
+    public virtual float BasicKnockback => basicAttackKnockback;
+    public virtual float ChargeKnockback => chargeAttackKnockback;
+    public virtual float SkillKnockback => skillKnockback;
+    public virtual float UltimateKnockback => ultimateKnockback;
 
     #endregion
 
@@ -128,7 +134,7 @@ public abstract class CharacterAttack : MonoBehaviour
         ultimeAttackAction.performed += _ =>
         {
             if (canUseUltimate)
-                UltimeAttack();
+                UltimateAttack();
         };
 
         attackAction.started += _ =>
@@ -152,7 +158,7 @@ public abstract class CharacterAttack : MonoBehaviour
     protected virtual void OnDisable()
     {
         if (skillAttackAction != null) skillAttackAction.performed -= _ => SkillAttack();
-        if (ultimeAttackAction != null) ultimeAttackAction.performed -= _ => UltimeAttack();
+        if (ultimeAttackAction != null) ultimeAttackAction.performed -= _ => UltimateAttack();
         if (attackAction != null)
         {
             attackAction.started -= _ => { };
@@ -266,7 +272,7 @@ public abstract class CharacterAttack : MonoBehaviour
         currentAttackType = AttackType.Skill;
         StartCoroutine(UseSkill());
     }
-    protected virtual void UltimeAttack()
+    protected virtual void UltimateAttack()
     {
         Debug.Log("Ultimate");
         currentAttackType = AttackType.Ultimate;
