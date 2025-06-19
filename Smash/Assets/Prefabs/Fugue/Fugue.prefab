@@ -643,7 +643,7 @@ MonoBehaviour:
   chargeTimeTreshold: 0.5
   skillDuration: 0.2
   skillDelay: 0
-  skillRate: 0.2
+  skillRate: 3
   skillDamage: 10
   skillKnockback: 5
   ultimateDuration: 0.2
