@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class Charac_Deku : CharacterAttack
 {
-
-    [SerializeField]
-    private GameObject skillObject;
-    [SerializeField]
-    private GameObject skillObjectcord;
-    [SerializeField]
-    private float skillForce;
+    public Corde corde;
 
     private void Start()
     {
@@ -50,28 +44,7 @@ public class Charac_Deku : CharacterAttack
     {
         base.SkillAttack();
 
-        GameObject currentSkill = Instantiate(skillObject, selectedHitbox.transform.position, selectedHitbox.transform.rotation);
-
-        GameObject fouet = Instantiate(skillObjectcord, Vector3.zero, Quaternion.identity);
-        fouet.GetComponent<Corde>().Setbout(this.gameObject, currentSkill);
-
-        if(selectedHitbox == hitboxRight)
-        {
-            currentSkill.GetComponent<Rigidbody>().AddForce(Vector3.forward * skillForce, ForceMode.Impulse);
-        }
-        else if (selectedHitbox == hitboxLeft)
-        {
-            currentSkill.GetComponent<Rigidbody>().AddForce(-Vector3.forward * skillForce, ForceMode.Impulse);
-        }else
-        {
-            currentSkill.GetComponent<Rigidbody>().AddForce(Vector3.up * skillForce, ForceMode.Impulse);
-        }
-
-        
-
-        Destroy(currentSkill, 3);
-        Destroy(fouet, 3);
-        
+        corde.StartFouet();
     }
 
     protected override void UltimateAttack()

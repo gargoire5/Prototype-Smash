@@ -5,7 +5,8 @@ using UnityEngine;
 public class Debut_fouet : MonoBehaviour
 {
     public Rigidbody rb;
-    private bool iscollid;
+    public bool iscollid;
+    
     // Start is called before the first frame update
     void Start()
     {
