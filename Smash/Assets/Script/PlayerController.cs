@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody rb;
 
-    private Vector2 inputDirection;
+    public Vector2 inputDirection;
 
     public float bounceForce = 20f;
 

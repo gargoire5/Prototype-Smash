@@ -548,23 +548,28 @@ MonoBehaviour:
   hitboxUp: {fileID: 1834168057}
   isAttacking: 0
   lastMoveDirection: {x: 1, y: 0}
+  CharacterRender: {fileID: 0}
   basicAttackDuration: 0.2
   basicAttackDelay: 0
   basicAttackRate: 0.2
   basicAttackDamage: 5
+  basicAttackKnockback: 0
   chargeAttackDuration: 0.2
   chargeAttackDelay: 0
   chargeAttackRate: 0.2
   chargeAttackDamage: 7.5
+  chargeAttackKnockback: 0
   chargeTimeTreshold: 0.5
   skillDuration: 0.2
   skillDelay: 0
   skillRate: 0.2
   skillDamage: 10
+  skillKnockback: 0
   ultimateDuration: 0.2
   ultimateDelay: 30
   ultimateRate: 0.2
   ultimateDamage: 20
+  ultimateKnockback: 0
   currentAttackType: 0
 --- !u!1 &788533867
 GameObject:
@@ -935,8 +940,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aac343c6507fa489c2ec96f99276eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveAction: {fileID: -8076291310143691428, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
-  JumpAction: {fileID: 900505413667631089, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
+  MoveAction: {fileID: -8076291310143691428, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
+  JumpAction: {fileID: 900505413667631089, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
   speed: 5
   moveForce: 10
   rb: {fileID: 1266544900}
@@ -976,23 +981,28 @@ MonoBehaviour:
   hitboxUp: {fileID: 788533867}
   isAttacking: 0
   lastMoveDirection: {x: 1, y: 0}
+  CharacterRender: {fileID: 0}
   basicAttackDuration: 0.2
   basicAttackDelay: 0
   basicAttackRate: 0.2
   basicAttackDamage: 2
+  basicAttackKnockback: 0
   chargeAttackDuration: 0.2
   chargeAttackDelay: 0
   chargeAttackRate: 0.2
   chargeAttackDamage: 7.5
+  chargeAttackKnockback: 0
   chargeTimeTreshold: 0.5
   skillDuration: 0.2
   skillDelay: 10
   skillRate: 0.2
   skillDamage: 35
+  skillKnockback: 0
   ultimateDuration: 0.2
   ultimateDelay: 30
   ultimateRate: 0.2
   ultimateDamage: 20
+  ultimateKnockback: 0
   currentAttackType: 0
   dashDistance: 5
   dashDuration: 0.2
@@ -1008,7 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 397ad6b3ea64f4d41928e84d7f2a7a96, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -1023,7 +1033,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player1
+  m_DefaultActionMap: Player2
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1266544904
@@ -1812,8 +1822,8 @@ Transform:
   m_GameObject: {fileID: 1796730679264864472}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.9}
-  m_LocalScale: {x: 1, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0.75}
+  m_LocalScale: {x: 1, y: 0.8, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7073946001216497143}
@@ -1993,8 +2003,8 @@ Transform:
   m_GameObject: {fileID: 2208812884669622394}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.9}
-  m_LocalScale: {x: 1, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0, z: -0.75}
+  m_LocalScale: {x: 1, y: 0.8, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7073946001216497143}
@@ -2035,8 +2045,8 @@ Transform:
   m_GameObject: {fileID: 7685331421500915327}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
-  m_LocalScale: {x: 1, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalScale: {x: 1, y: 0.5, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7073946001216497143}
@@ -2206,6 +2216,7 @@ GameObject:
   - component: {fileID: 4796555842485751184}
   - component: {fileID: 2818185937390442917}
   - component: {fileID: 7220870354959636115}
+  - component: {fileID: 7220870354959636116}
   m_Layer: 0
   m_Name: Greg
   m_TagString: Untagged
@@ -2291,26 +2302,46 @@ MonoBehaviour:
   hitboxUp: {fileID: 7685331421500915327}
   isAttacking: 0
   lastMoveDirection: {x: 1, y: 0}
-  basicAttackDuration: 0
-  basicAttackDelay: 0
-  basicAttackRate: 0
-  basicAttackDamage: 0
-  chargeAttackDuration: 0
-  chargeAttackDelay: 0
-  chargeAttackRate: 0
-  chargeAttackDamage: 0
-  chargeTimeTreshold: 0
-  skillDuration: 0
-  skillDelay: 0
-  skillRate: 0
-  skillDamage: 0
+  CharacterRender: {fileID: 0}
+  basicAttackDuration: 0.2
+  basicAttackDelay: 0.02
+  basicAttackRate: 0.05
+  basicAttackDamage: 12
+  basicAttackKnockback: 4
+  chargeAttackDuration: 0.1
+  chargeAttackDelay: 0.25
+  chargeAttackRate: 0.15
+  chargeAttackDamage: 15
+  chargeAttackKnockback: 6
+  chargeTimeTreshold: 0.4
+  skillDuration: 3
+  skillDelay: 0.5
+  skillRate: 15
+  skillDamage: 25
+  skillKnockback: 8
   ultimateDuration: 0
   ultimateDelay: 0
   ultimateRate: 0
   ultimateDamage: 0
+  ultimateKnockback: 0
   currentAttackType: 0
   ultObject: {fileID: 0}
   skillObject: {fileID: 7848658739997207965, guid: 5ac2cdf65c920fe418c13daf74b72e3a, type: 3}
+  playerController: {fileID: 2245865138484557298}
+--- !u!114 &7220870354959636116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6162947116695955800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f44999ead69f3a4daeb8f8ba80b323d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercent: 0
+  knockbackMultiplier: 1.5
 --- !u!1 &7538288991735718005
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,23 +11,8 @@ public class CHA_Greg : CharacterAttack
     [SerializeField]
     private GameObject skillObject;
 
-    public override float BasicDamage => 6f;
-    public override float BasicKnockback => 2f;
-    public override float BasicDuration => 0.4f;
-    public override float BasicDelay => 0.05f;
-    public override float BasicRate => 0.1f;
-
-    public override float SkillDamage => 18f;
-    public override float SkillKnockback => 7f;
-    public override float SkillDuration => 0f;
-    public override float SkillDelay => 0f;
-    public override float SkillRate => 3f;
-
-    public override float UltimateDamage => 35f;
-    public override float UltimateKnockback => 12f;
-    public override float UltimateDuration => 0.5f;
-    public override float UltimateDelay => 0f;
-    public override float UltimateRate => 30f;
+    public PlayerController playerController;
+    private Vector2 inputdirection;
 
     protected override void BasicAttack()
     {
@@ -48,11 +33,16 @@ public class CHA_Greg : CharacterAttack
             selectedHitbox = hitboxRight;
 
         GameObject currentSkill = Instantiate(skillObject, selectedHitbox.transform.position, selectedHitbox.transform.rotation);
-        SKI_Fugue skill = currentSkill.GetComponent<SKI_Fugue>();
+        currentSkill.transform.parent = transform;
+        Vector2 dir = playerController.inputDirection;
 
-        if (selectedHitbox == hitboxLeft)
-            skill.SetDirection(-1);
-        Destroy(currentSkill, 2.0f);
+        Vector3 dash = transform.forward * dir.x;
+
+        Rigidbody rb = playerController.GetComponent<Rigidbody>();
+
+        rb.AddForce(dash * 10, ForceMode.Impulse);
+        
+        Destroy(currentSkill, skillDuration);
     }
 
     protected override void UltimateAttack()
