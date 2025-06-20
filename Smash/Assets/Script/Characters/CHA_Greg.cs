@@ -13,6 +13,11 @@ public class CHA_Greg : CharacterAttack
 
     public PlayerController playerController;
     private Vector2 inputdirection;
+    public Material skybloxUlt;
+    public Material skybloxDefault;
+    private GameObject background;
+    private DamageReceiver damageReceiver;
+    [SerializeField] public float invincibleGreg;
 
     protected override void BasicAttack()
     {
@@ -47,11 +52,16 @@ public class CHA_Greg : CharacterAttack
 
     protected override void UltimateAttack()
     {
+        background = GameObject.Find("Background");
+        damageReceiver = background.GetComponent<DamageReceiver>();
+
         base.UltimateAttack();
-
-        GameObject selectedHitbox = ultObject;
-        ultObject.GetComponent<Hitbox>().owner = this;
-
+        if (background != null)
+            background.SetActive(false);
+        else
+            Debug.Log("No background");
+        
+        
         StartCoroutine(UltAttack(selectedHitbox));
     }
 
@@ -63,11 +73,14 @@ public class CHA_Greg : CharacterAttack
     private IEnumerator UltAttack(GameObject hitbox)
     {
         yield return new WaitForSeconds(UltimateDelay);
-
-        GameObject currentHitbox = Instantiate(hitbox, transform.position, transform.rotation);
+        RenderSettings.skybox = skybloxUlt;
+        DynamicGI.UpdateEnvironment();
+        damageReceiver.enabled = false;
 
         yield return new WaitForSeconds(UltimateDuration);
-
-        Destroy(currentHitbox);
+        background.SetActive(true);
+        RenderSettings.skybox = skybloxDefault;
+        DynamicGI.UpdateEnvironment();
+        transform.GetComponent<DamageReceiver>().gameObject.SetActive(true);
     }
 }
