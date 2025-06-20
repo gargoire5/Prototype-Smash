@@ -792,7 +792,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519ce8de5c43ea24cab69a5fa616993e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _managerClass: {fileID: 5855437543896836093, guid: 4718ff74be01c0b42801a7411a5d551d, type: 3}
+  _player1Character: {fileID: 0}
+  _player2Character: {fileID: 0}
+  Player1Input: {fileID: -944628639613478452, guid: 934743afc64852c4c84489441df75dcd, type: 3}
+  Player2Input: {fileID: -944628639613478452, guid: c405d414ecf0c2349a4016d20b518e9b, type: 3}
 --- !u!4 &823074202
 Transform:
   m_ObjectHideFlags: 0

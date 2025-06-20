@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class SmashGameManager : MonoBehaviour
@@ -14,6 +15,9 @@ public class SmashGameManager : MonoBehaviour
     private GameObject _player2Character = null;
 
     private MatchManager _matchManager = null;
+
+    public InputActionAsset Player1Input;
+    public InputActionAsset Player2Input;
 
 
     // Start is called before the first frame update
@@ -73,6 +77,8 @@ public class SmashGameManager : MonoBehaviour
     public void SetManager(MatchManager managerToSet)
     {
         _matchManager = managerToSet;
+        _matchManager.Player1Input = Player1Input;
+        _matchManager.Player2Input = Player2Input;
 
         _matchManager.StartMatch(_player1Character, _player2Character);
     }

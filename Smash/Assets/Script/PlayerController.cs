@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Properties;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public InputActionReference MoveAction;
-    public InputActionReference JumpAction;
+    public InputAction MoveAction;
+    public InputAction JumpAction;
+
+    private bool _areInputsSet = false;
 
     public float speed = 5f;
     public float moveForce = 10f;
@@ -29,28 +33,30 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        MoveAction.action.Enable();
-        JumpAction.action.Enable();
+        MoveAction.Enable();
+        JumpAction.Enable();
         heals = maxHeals;
     }
 
     private void Awake()
     {
-        JumpAction.action.started += Jump;
+        //JumpAction.started += Jump;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        inputDirection = MoveAction.action.ReadValue<Vector2>();
+        inputDirection = MoveAction.ReadValue<Vector2>();
     }
 
     void FixedUpdate()
     {
         Vector3 extraGravity = Physics.gravity * (gravityMulti - 1f);
         rb.AddForce(extraGravity, ForceMode.Acceleration);
-        MovePlayer();
+
+        if (_areInputsSet)
+            MovePlayer();
     }
 
 
@@ -80,5 +86,20 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
             numJump--;
         }
+    }
+
+    public void SetupInputActions(InputActionAsset playerInputToSet)
+    {
+        var actions = playerInputToSet;
+
+        gameObject.GetComponent<PlayerInput>().actions = actions;
+
+        MoveAction = actions["Move"];
+        JumpAction = actions["Jump"];
+
+        JumpAction.started += Jump;
+        _areInputsSet = true;
+
+        gameObject.GetComponent<CharacterAttack>().SetupInputActions(playerInputToSet);
     }
 }

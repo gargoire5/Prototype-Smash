@@ -19,6 +19,8 @@ public abstract class CharacterAttack : MonoBehaviour
     protected InputAction moveAction;
     public InputAction jumpAction;
 
+    private bool _areInputsSet = false;
+
     protected float basicAttackCooldown;
 
     protected float holdTime = 0f;
@@ -28,6 +30,9 @@ public abstract class CharacterAttack : MonoBehaviour
     public bool canUseSkill = true;
 
     public GameObject selectedHitbox = null;
+
+    [SerializeField]
+    public GameObject PlayerTag;
 
     [Header("Hitboxes")]
     public GameObject hitboxRight;
@@ -107,52 +112,13 @@ public abstract class CharacterAttack : MonoBehaviour
     }
     protected virtual void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
+        TryGetComponent<PlayerInput>(out playerInput);
 
         if (playerInput == null)
         {
             Debug.LogError("PlayerInput est manquant sur " + gameObject.name);
             return;
         }
-
-        var actions = playerInput.actions;
-        attackAction = actions["Attack"];
-        skillAttackAction = actions["Skill"];
-        ultimeAttackAction = actions["Ultimate"];
-        paradeAction = actions["Parade"];
-        moveAction = actions["Move"];
-        jumpAction = actions["Jump"];
-    }
-
-    protected virtual void OnEnable()
-    {
-        skillAttackAction.performed += _ =>
-        {
-            if (canUseSkill)
-                SkillAttack();
-        };
-        ultimeAttackAction.performed += _ =>
-        {
-            if (canUseUltimate)
-                UltimateAttack();
-        };
-
-        attackAction.started += _ =>
-        {
-            isHoldingAttack = true;
-            holdTime = 0f;
-        };
-
-        attackAction.canceled += _ =>
-        {
-            isHoldingAttack = false;
-            if (holdTime >= chargeTimeTreshold)
-                ChargeAttack();
-            else
-                holdTime = 0f;
-        };
-
-        attackAction.performed += _ => BasicAttack();
     }
 
     protected virtual void OnDisable()
@@ -168,27 +134,30 @@ public abstract class CharacterAttack : MonoBehaviour
 
     protected virtual void Update()
     {
-        Vector2 moveInput = moveAction.ReadValue<Vector2>();
-        if (moveInput.x != 0)
+        if (_areInputsSet)
         {
-            lastMoveDirection = new Vector2(Mathf.Sign(moveInput.x), 0);
-
-            if (jumpAction.IsPressed())
-                selectedHitbox = hitboxUp;
-            else if (lastMoveDirection.x > 0)
-                selectedHitbox = hitboxRight;
-            else
-                selectedHitbox = hitboxLeft;
-        }
-
-        if (isHoldingAttack)
-        {
-            holdTime += Time.deltaTime;
-
-            if (holdTime < chargeTimeTreshold && Time.time >= basicAttackCooldown)
+            Vector2 moveInput = moveAction.ReadValue<Vector2>();
+            if (moveInput.x != 0)
             {
-                basicAttackCooldown = Time.time + BasicRate;
-                BasicAttack();
+                lastMoveDirection = new Vector2(Mathf.Sign(moveInput.x), 0);
+
+                if (jumpAction.IsPressed())
+                    selectedHitbox = hitboxUp;
+                else if (lastMoveDirection.x > 0)
+                    selectedHitbox = hitboxRight;
+                else
+                    selectedHitbox = hitboxLeft;
+            }
+
+            if (isHoldingAttack)
+            {
+                holdTime += Time.deltaTime;
+
+                if (holdTime < chargeTimeTreshold && Time.time >= basicAttackCooldown)
+                {
+                    basicAttackCooldown = Time.time + BasicRate;
+                    BasicAttack();
+                }
             }
         }
     }
@@ -276,4 +245,46 @@ public abstract class CharacterAttack : MonoBehaviour
         StartCoroutine(UseUlt());
     }
     protected abstract void ParadeAction();
+
+    public void SetupInputActions(InputActionAsset playerInputToSet)
+    {
+        playerInput.actions = playerInputToSet;
+        var actions = playerInput.actions;
+        attackAction = actions["Attack"];
+        skillAttackAction = actions["Skill"];
+        ultimeAttackAction = actions["Ultimate"];
+        paradeAction = actions["Parade"];
+        moveAction = actions["Move"];
+        jumpAction = actions["Jump"];
+
+        skillAttackAction.performed += _ =>
+        {
+            if (canUseSkill)
+                SkillAttack();
+        };
+        ultimeAttackAction.performed += _ =>
+        {
+            if (canUseUltimate)
+                UltimateAttack();
+        };
+
+        attackAction.started += _ =>
+        {
+            isHoldingAttack = true;
+            holdTime = 0f;
+        };
+
+        attackAction.canceled += _ =>
+        {
+            isHoldingAttack = false;
+            if (holdTime >= chargeTimeTreshold)
+                ChargeAttack();
+            else
+                holdTime = 0f;
+        };
+
+        attackAction.performed += _ => BasicAttack();
+
+        _areInputsSet = true;
+    }
 }
