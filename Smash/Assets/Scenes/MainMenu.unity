@@ -269,7 +269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: ec6f957d97d59654e984e07e04c29b9f, type: 3}
+  m_Texture: {fileID: 2800000, guid: 3f5e4e7b5528fdc43a52b4620ffb4a13, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
         m_MethodName: SetCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8024985193415563486, guid: d3c5422d8fc340e49922df4afff5bf0b, type: 3}
+          m_ObjectArgument: {fileID: 7850513039963865705, guid: 2e9c0f64493f8a14fa958a545b553fc2, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -794,6 +794,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player1Character: {fileID: 0}
   _player2Character: {fileID: 0}
+  Player1Input: {fileID: -944628639613478452, guid: 934743afc64852c4c84489441df75dcd, type: 3}
+  Player2Input: {fileID: -944628639613478452, guid: c405d414ecf0c2349a4016d20b518e9b, type: 3}
 --- !u!4 &823074202
 Transform:
   m_ObjectHideFlags: 0

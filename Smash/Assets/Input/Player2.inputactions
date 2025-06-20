@@ -2,13 +2,13 @@
     "name": "Player2",
     "maps": [
         {
-            "name": "Player2",
-            "id": "2fdae55f-28ed-4fdd-89e9-a75fcce96def",
+            "name": "Player",
+            "id": "061112e5-f1d2-4270-a49f-441cd3581b84",
             "actions": [
                 {
                     "name": "Move",
                     "type": "Value",
-                    "id": "12d4caf9-5a51-439f-92d7-4cdb3e70dcfe",
+                    "id": "bd44e1e5-b287-472b-b7c9-77668e6d2637",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -17,7 +17,7 @@
                 {
                     "name": "Jump",
                     "type": "Button",
-                    "id": "45db4647-12e8-480a-97bf-593fe62d9606",
+                    "id": "dd7e2602-56a4-4bd7-adb2-b2a31d9351e3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -26,7 +26,7 @@
                 {
                     "name": "Attack",
                     "type": "Button",
-                    "id": "2f5d10b5-9a4e-4569-a734-11b585b26f53",
+                    "id": "e5750d59-5a7a-4c53-bcf8-6cc755c444a5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -35,7 +35,7 @@
                 {
                     "name": "Skill",
                     "type": "Button",
-                    "id": "e6dc79f5-2404-4c3f-a34a-9e521e0ba942",
+                    "id": "0bdb9ff4-9b64-45a3-9e59-d39fd9057c04",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -44,7 +44,7 @@
                 {
                     "name": "Ultimate",
                     "type": "Button",
-                    "id": "a6cbad71-0e73-4b23-8b02-f47c31a7c979",
+                    "id": "da8a3111-faff-4c3a-8a21-1a4bfdef0441",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -53,7 +53,7 @@
                 {
                     "name": "Parade",
                     "type": "Button",
-                    "id": "d897b88c-529e-4dc9-a3f2-26322860b1f7",
+                    "id": "81483a4b-504b-4daf-bec2-30e22d35e5b8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -63,7 +63,7 @@
             "bindings": [
                 {
                     "name": "2D Vector",
-                    "id": "b58a8b2a-9b42-47b7-9828-a305ab5cbfc3",
+                    "id": "caf5080d-b561-41c5-9cdd-1627d3b6b307",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -73,9 +73,20 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "up",
+                    "id": "bb418178-d685-4d13-94b6-c9a5e50a1b8c",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "down",
-                    "id": "358e3ea3-458a-4524-95ce-30e80f9e5140",
-                    "path": "<Keyboard>/downArrow",
+                    "id": "09f9180c-7122-4cb5-a986-bcb7e4c637a7",
+                    "path": "<Keyboard>/numpad5",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -85,7 +96,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "e2debdf4-56a9-433e-b955-e41c68bebd46",
+                    "id": "a1f48b13-0bde-4a9a-bd2f-f65ffab435c7",
                     "path": "<Keyboard>/numpad4",
                     "interactions": "",
                     "processors": "",
@@ -96,7 +107,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "72630e0a-9aed-4340-8592-a0b158c8fdb6",
+                    "id": "a2ec7407-9595-441e-b5c2-e9c0a518e516",
                     "path": "<Keyboard>/numpad6",
                     "interactions": "",
                     "processors": "",
@@ -107,7 +118,7 @@
                 },
                 {
                     "name": "",
-                    "id": "49379c1d-69f6-4b82-9458-8a1512690b81",
+                    "id": "725168b8-94cb-493c-9f4f-846a6551a8ea",
                     "path": "<Keyboard>/numpad8",
                     "interactions": "",
                     "processors": "",
@@ -118,7 +129,7 @@
                 },
                 {
                     "name": "",
-                    "id": "06c7d9aa-df1e-4b8a-8a86-263cbd659ef8",
+                    "id": "03ca67e0-00f6-4459-ab45-6c4bae96eb9e",
                     "path": "<Keyboard>/numpad1",
                     "interactions": "",
                     "processors": "",
@@ -129,7 +140,7 @@
                 },
                 {
                     "name": "",
-                    "id": "7089df65-9dea-4d26-99f9-ca6ce96e0fe4",
+                    "id": "833670d3-24ee-496f-99fe-43b7f046c924",
                     "path": "<Keyboard>/numpad2",
                     "interactions": "",
                     "processors": "",
@@ -140,7 +151,7 @@
                 },
                 {
                     "name": "",
-                    "id": "84d6bd75-b488-483d-a2da-bb57ff0a14ba",
+                    "id": "8869bb4c-ca0a-45e8-996a-b08f063f9817",
                     "path": "<Keyboard>/numpad3",
                     "interactions": "",
                     "processors": "",
@@ -151,7 +162,7 @@
                 },
                 {
                     "name": "",
-                    "id": "b404099b-ece8-4e4c-aafe-8568220005ae",
+                    "id": "72959303-11fc-4ab8-a7b7-0157e1c6039d",
                     "path": "<Keyboard>/numpad5",
                     "interactions": "",
                     "processors": "",

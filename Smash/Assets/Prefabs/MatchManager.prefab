@@ -83,10 +83,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player1Lives: 3
   Player2Lives: 3
+  _player1Tag: {fileID: 8712594261613643349, guid: 02a7d6447697a154ab1a89f6267940ed, type: 3}
+  _player2Tag: {fileID: 8807390510598150203, guid: ff1f2b7e9fd105844aa48fe6704948a9, type: 3}
   Player1Character: {fileID: 0}
   Player2Character: {fileID: 0}
   _player1Spawn: {fileID: 4717052876618594646}
   _player2Spawn: {fileID: 5509629952102706385}
+  Player1Input: {fileID: 0}
+  Player2Input: {fileID: 0}
+  Tag1Texture: {fileID: 2100000, guid: 3cd8cebaca9f6db4aaca2c5c7e7c6eaa, type: 2}
+  Tag2Texture: {fileID: 2100000, guid: 3a89d35b577a29541a79ecb8dbba5a6a, type: 2}
 --- !u!1 &6390844912885220142
 GameObject:
   m_ObjectHideFlags: 0

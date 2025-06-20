@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MatchManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class MatchManager : MonoBehaviour
 
     private GameObject _player1;
     private GameObject _player2;
+
+    public GameObject _player1Tag;
+    public GameObject _player2Tag;
 
     public CharacterAttack Player1Character;
     public CharacterAttack Player2Character;
@@ -20,11 +24,19 @@ public class MatchManager : MonoBehaviour
 
     private SmashGameManager _manager;
 
+    public InputActionAsset Player1Input;
+    public InputActionAsset Player2Input;
+
+    public Material Tag1Texture;
+    public Material Tag2Texture;
+
     // Start is called before the first frame update
     void Start()
     {
         _manager = FindFirstObjectByType<SmashGameManager>();
         _manager.SetManager(this);
+
+        FindFirstObjectByType<UIManager>().SetManager(this);
     }
 
     // Update is called once per frame
@@ -68,12 +80,16 @@ public class MatchManager : MonoBehaviour
         _player1 = Instantiate(player1Prefab);
         _player1.transform.position = _player1Spawn.position;
         Player1Character = _player1.GetComponent<CharacterAttack>();
+        Player1Character.PlayerTag.GetComponent<MeshRenderer>().material = Tag1Texture;
+
+        _player1.GetComponent<PlayerController>().SetupInputActions(Player1Input);
 
         _player2 = Instantiate(player2Prefab);
         _player2.transform.position = _player2Spawn.position;
         Player2Character = _player2.GetComponent<CharacterAttack>();
+        Player2Character.PlayerTag.GetComponent<MeshRenderer>().material = Tag2Texture;
 
-        Debug.Log("Je commence");
+        _player2.GetComponent<PlayerController>().SetupInputActions(Player2Input);
     }
 
     public void SetManager(SmashGameManager managerToSet)
