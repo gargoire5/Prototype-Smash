@@ -30,6 +30,21 @@ public class UIManager : MonoBehaviour
 
     private bool _doOnce = false;
 
+    [SerializeField]
+    private RawImage _p1SkillImage;
+
+    [SerializeField]
+    private RawImage _p2SkillImage;
+
+    [SerializeField]
+    private RawImage _p1UltImage;
+
+    [SerializeField]
+    private RawImage _p2UltImage;
+
+    Color redish = new Color(1, 0.36f, 0.32f, 1);
+    Color blueish = new Color(0.32f, 0.62f, 1, 1);
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -43,6 +58,27 @@ public class UIManager : MonoBehaviour
 
             Player1Lives.text = _matchManager.Player1Lives.ToString();
             Player2Lives.text = _matchManager.Player2Lives.ToString();
+
+            if (_matchManager.P1CanSkill)
+                _p1SkillImage.color = redish;
+            else
+                _p1SkillImage.color = Color.white;
+
+            if (_matchManager.P2CanSkill)
+                
+                _p2SkillImage.color = blueish;
+            else
+                _p2SkillImage.color = Color.white;
+
+            if (_matchManager.P1CanUlt)
+                _p1UltImage.color = redish;
+            else
+                _p1UltImage.color = Color.white;
+
+            if (_matchManager.P1CanSkill)
+                _p2UltImage.color = blueish;
+            else
+                _p2UltImage.color = Color.white;
 
             if (_doOnce == false)
             {

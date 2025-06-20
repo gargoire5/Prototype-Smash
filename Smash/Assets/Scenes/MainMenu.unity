@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 349967708}
   - component: {fileID: 349967707}
   m_Layer: 5
-  m_Name: Fugue (2)
+  m_Name: Gregoire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 3f5e4e7b5528fdc43a52b4620ffb4a13, type: 3}
+  m_Texture: {fileID: 2800000, guid: ec6f957d97d59654e984e07e04c29b9f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
         m_MethodName: SetCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7850513039963865705, guid: 2e9c0f64493f8a14fa958a545b553fc2, type: 3}
+          m_ObjectArgument: {fileID: 8024985193415563486, guid: d3c5422d8fc340e49922df4afff5bf0b, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 439220213}
   - component: {fileID: 439220212}
   m_Layer: 5
-  m_Name: Fugue (3)
+  m_Name: Anby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 3f5e4e7b5528fdc43a52b4620ffb4a13, type: 3}
+  m_Texture: {fileID: 2800000, guid: c6a6bd66ac6810e4dabd15d8b650d680, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -454,7 +454,7 @@ MonoBehaviour:
         m_MethodName: SetCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7850513039963865705, guid: 2e9c0f64493f8a14fa958a545b553fc2, type: 3}
+          m_ObjectArgument: {fileID: 3216323563832226448, guid: 846daa131719c9243bc965c72dfe05d6, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

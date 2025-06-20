@@ -30,6 +30,12 @@ public class MatchManager : MonoBehaviour
     public Material Tag1Texture;
     public Material Tag2Texture;
 
+    public bool P1CanSkill;
+    public bool P2CanSkill;
+
+    public bool P1CanUlt;
+    public bool P2CanUlt;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +48,10 @@ public class MatchManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        P1CanSkill = Player1Character.canUseSkill;
+        P2CanSkill = Player2Character.canUseSkill;
+        P1CanUlt = Player1Character.canUseUltimate;
+        P2CanUlt = Player2Character.canUseUltimate;
     }
 
     private void Player1Death()

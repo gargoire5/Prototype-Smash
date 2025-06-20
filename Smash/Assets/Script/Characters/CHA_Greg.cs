@@ -52,11 +52,11 @@ public class CHA_Greg : CharacterAttack
     }
 
     protected override void UltimateAttack()
-    {
+    { 
+        base.UltimateAttack();
+
         background = GameObject.Find("Background");
         damageReceiver = transform.GetComponent<DamageReceiver>();
-
-        base.UltimateAttack();
         
         StartCoroutine(UltAttack(selectedHitbox));
     }

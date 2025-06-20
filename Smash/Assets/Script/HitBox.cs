@@ -6,6 +6,9 @@ public class Hitbox : MonoBehaviour
     public float damage = 10f;
     public CharacterAttack owner = null;
 
+    [SerializeField]
+    private Vector3 direction = Vector3.zero;
+
     private void Start()
     {
         if (owner == null && transform.parent != null)
@@ -46,14 +49,17 @@ public class Hitbox : MonoBehaviour
                 break;
         }
 
-        Vector3 direction = (other.transform.position - owner.transform.position).normalized;
+        if (direction == Vector3.zero)
+            direction = (other.transform.position - owner.transform.position).normalized;
+
         receiver.TakeDamage(actualDamage, direction * knockbackForce);
         Debug.Log($"{owner.name} inflige {actualDamage} dmg et {knockbackForce} knockback à {other.name}");
 
+        /*
         if (owner.currentAttackType == AttackType.Skill && owner is Player1 p1 && p1.IsDashing())
         {
             owner.StartCoroutine(FreezeAndTeleportBehind(other.transform, p1.GetDashDirection()));
-        }
+        }*/
     }
 
     private IEnumerator FreezeAndTeleportBehind(Transform target, Vector3 dashDirection)
