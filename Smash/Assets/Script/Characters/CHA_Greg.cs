@@ -46,21 +46,17 @@ public class CHA_Greg : CharacterAttack
         Rigidbody rb = playerController.GetComponent<Rigidbody>();
 
         rb.AddForce(dash * 10, ForceMode.Impulse);
-        
+
+        currentSkill.GetComponent<Hitbox>().owner = this;
         Destroy(currentSkill, skillDuration);
     }
 
     protected override void UltimateAttack()
     {
         background = GameObject.Find("Background");
-        damageReceiver = background.GetComponent<DamageReceiver>();
+        damageReceiver = transform.GetComponent<DamageReceiver>();
 
         base.UltimateAttack();
-        if (background != null)
-            background.SetActive(false);
-        else
-            Debug.Log("No background");
-        
         
         StartCoroutine(UltAttack(selectedHitbox));
     }
@@ -75,15 +71,29 @@ public class CHA_Greg : CharacterAttack
         yield return new WaitForSeconds(UltimateDelay);
         RenderSettings.skybox = skybloxUlt;
         DynamicGI.UpdateEnvironment();
+
+        if (background != null)
+            background.SetActive(false);
+        else
+            Debug.Log("No background");
         damageReceiver.enabled = false;
 
-        yield return new WaitForSeconds(invincibleGreg);
+        StartCoroutine(Invincibility(invincibleGreg));
 
+        basicAttackDamage += 3f;
+        chargeAttackDamage += 3f;
 
         yield return new WaitForSeconds(UltimateDuration);
         background.SetActive(true);
         RenderSettings.skybox = skybloxDefault;
         DynamicGI.UpdateEnvironment();
-        transform.GetComponent<DamageReceiver>().gameObject.SetActive(true);
+        basicAttackDamage -= 3f;
+        chargeAttackDamage -= 3f;
+    }
+
+    private IEnumerator Invincibility(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        damageReceiver.enabled = true;
     }
 }
