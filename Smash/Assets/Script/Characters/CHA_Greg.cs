@@ -77,6 +77,9 @@ public class CHA_Greg : CharacterAttack
         DynamicGI.UpdateEnvironment();
         damageReceiver.enabled = false;
 
+        yield return new WaitForSeconds(invincibleGreg);
+
+
         yield return new WaitForSeconds(UltimateDuration);
         background.SetActive(true);
         RenderSettings.skybox = skybloxDefault;
