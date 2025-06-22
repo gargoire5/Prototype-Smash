@@ -469,7 +469,7 @@ MonoBehaviour:
   heals: 0
   maxJump: 4
   numJump: 4
-  gravityMulti: 2
+  gravityMulti: 3
 --- !u!54 &2754947881934848415
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -529,6 +529,8 @@ MonoBehaviour:
   isAttacking: 0
   lastMoveDirection: {x: 1, y: 0}
   CharacterRender: {fileID: 2800000, guid: c6a6bd66ac6810e4dabd15d8b650d680, type: 3}
+  CharacterSkillIcon: {fileID: 2800000, guid: 59595754b7814784795e33e9f5b9d9ae, type: 3}
+  CharacterUltIcon: {fileID: 2800000, guid: 6bad4fe323081d2488c55d6a83d11329, type: 3}
   basicAttackDuration: 0.3
   basicAttackDelay: 0.1
   basicAttackRate: 0.5
@@ -544,7 +546,7 @@ MonoBehaviour:
   skillDelay: 0.1
   skillRate: 10
   skillDamage: 10
-  skillKnockback: 7
+  skillKnockback: 10
   ultimateDuration: 0
   ultimateDelay: 0
   ultimateRate: 25

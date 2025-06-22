@@ -42,6 +42,18 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private RawImage _p2UltImage;
 
+    [SerializeField]
+    private RawImage _p1SkillIcon;
+
+    [SerializeField]
+    private RawImage _p2SkillIcon;
+
+    [SerializeField]
+    private RawImage _p1UltIcon;
+
+    [SerializeField]
+    private RawImage _p2UltIcon;
+
     Color redish = new Color(1, 0.36f, 0.32f, 1);
     Color blueish = new Color(0.32f, 0.62f, 1, 1);
 
@@ -49,7 +61,21 @@ public class UIManager : MonoBehaviour
     void FixedUpdate()
     {
         if (_matchManager != null)
-        { 
+        {
+            if (_doOnce == false)
+            {
+                Player1Sprite.texture = _matchManager.Player1Character.CharacterRender;
+                Player2Sprite.texture = _matchManager.Player2Character.CharacterRender;
+
+                _p1SkillIcon.texture = _matchManager.Player1Character.CharacterSkillIcon;
+                _p2SkillIcon.texture = _matchManager.Player2Character.CharacterSkillIcon;
+
+                _p1UltIcon.texture = _matchManager.Player1Character.CharacterUltIcon;
+                _p2UltIcon.texture = _matchManager.Player2Character.CharacterUltIcon;
+
+                _doOnce = true;
+            }
+
             _player1Dmg = _matchManager.Player1Character.gameObject.GetComponent<DamageReceiver>();
             _player2Dmg = _matchManager.Player2Character.gameObject.GetComponent<DamageReceiver>();
 
@@ -79,15 +105,6 @@ public class UIManager : MonoBehaviour
                 _p2UltImage.color = blueish;
             else
                 _p2UltImage.color = Color.white;
-
-            if (_doOnce == false)
-            {
-                Player1Sprite.texture = _matchManager.Player1Character.CharacterRender;
-                Player2Sprite.texture = _matchManager.Player2Character.CharacterRender;
-
-                _doOnce = true;
-            }
-
         }
     }
 

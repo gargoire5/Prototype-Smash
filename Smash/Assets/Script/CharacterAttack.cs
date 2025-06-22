@@ -43,6 +43,8 @@ public abstract class CharacterAttack : MonoBehaviour
     public Vector2 lastMoveDirection = Vector2.right;
 
     public Texture CharacterRender;
+    public Texture CharacterSkillIcon;
+    public Texture CharacterUltIcon;
 
     //Fields to modify while making a character
     [Header("Attack Data - Basic Attack")]
