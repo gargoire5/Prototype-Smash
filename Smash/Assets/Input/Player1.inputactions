@@ -140,6 +140,17 @@
                 },
                 {
                     "name": "",
+                    "id": "96bc02b8-de4a-4f31-b321-14670343e3d8",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b8a623c1-3a8f-488c-abd8-20d48dfc2080",
                     "path": "<Keyboard>/x",
                     "interactions": "",
@@ -151,8 +162,30 @@
                 },
                 {
                     "name": "",
+                    "id": "ccca9ab5-c772-494e-94a0-cd57288b48b9",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b0269478-7cb4-4cd9-ac9e-ef1643b7fdd5",
                     "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ultimate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f5697715-c334-43ce-8728-79cff458c5e8",
+                    "path": "<Keyboard>/y",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
