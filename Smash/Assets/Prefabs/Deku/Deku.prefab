@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   owner: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &5184740652012582319
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +229,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1143154363781613570}
   - {fileID: 4510061701563904869}
   - {fileID: 562635673072173420}
   - {fileID: 8938683010172068810}
@@ -319,14 +321,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aac343c6507fa489c2ec96f99276eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveAction: {fileID: -8076291310143691428, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
-  JumpAction: {fileID: 900505413667631089, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
+  MoveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 90408c13-52ba-40d2-8a89-4abdf2e8e933
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  JumpAction:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 417f9dda-570e-408f-b659-1b2b4036bf00
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   speed: 5
   moveForce: 15
   rb: {fileID: 2239972008572523177}
+  inputDirection: {x: 0, y: 0}
   bounceForce: 20
   maxHeals: 10
   heals: 0
+  maxJump: 3
   numJump: 3
   isMove: 1
   gravityMulti: 3
@@ -369,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 8121dfcce678a784e8883c34eec6df15, type: 3}
+  m_Actions: {fileID: 0}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -384,7 +404,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player1
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &796302739114139405
@@ -412,27 +432,36 @@ MonoBehaviour:
   canUseUltimate: 1
   canUseSkill: 1
   selectedHitbox: {fileID: 0}
+  PlayerTag: {fileID: 9178752659937519536}
   hitboxRight: {fileID: 1425309711276853524}
   hitboxLeft: {fileID: 6009574637966182779}
   hitboxUp: {fileID: 7156003919242792629}
   isAttacking: 0
+  lastMoveDirection: {x: 1, y: 0}
+  CharacterRender: {fileID: 2800000, guid: f294ac3c60ae4614da73db0eaaf967ec, type: 3}
+  CharacterSkillIcon: {fileID: 2800000, guid: f294ac3c60ae4614da73db0eaaf967ec, type: 3}
+  CharacterUltIcon: {fileID: 2800000, guid: f294ac3c60ae4614da73db0eaaf967ec, type: 3}
   basicAttackDuration: 0.15
   basicAttackDelay: 0.05
   basicAttackRate: 0.18
   basicAttackDamage: 4
+  basicAttackKnockback: 2
   chargeAttackDuration: 0.2
   chargeAttackDelay: 0
   chargeAttackRate: 0.2
   chargeAttackDamage: 7
+  chargeAttackKnockback: 0
   chargeTimeTreshold: 0.5
   skillDuration: 3
   skillDelay: 0
   skillRate: 0.5
   skillDamage: 0
+  skillKnockback: 0
   ultimateDuration: 15
   ultimateDelay: 0
   ultimateRate: 20
   ultimateDamage: 0
+  ultimateKnockback: 0
   currentAttackType: 0
   corde: {fileID: 2566553800725868956}
   multipUlt: 3
@@ -705,6 +734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   owner: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &7156003919242792629
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,3 +857,88 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   owner: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
+--- !u!1 &9178752659937519536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1143154363781613570}
+  - component: {fileID: 2658960847709140742}
+  - component: {fileID: 8791488022875295901}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1143154363781613570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9178752659937519536}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0.41499996, z: 0}
+  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 4717973059513048271}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!33 &2658960847709140742
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9178752659937519536}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &8791488022875295901
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9178752659937519536}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials: []
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
