@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using NUnit.Framework;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -77,6 +79,18 @@ public abstract class CharacterAttack : MonoBehaviour
     [SerializeField] public float ultimateKnockback;
 
 
+    //0 = Menu SFX
+    //1 = Start SFX
+    //2 = Death SFX
+    //3 = Skill SFX
+    //4 = Ult SFX
+    [SerializeField] public List<AudioClip> SFXList = new List<AudioClip>();
+
+    [SerializeField] 
+    private AudioSource _audioSource;
+    private AudioClip _currentAudioClip;
+
+
     public AttackType currentAttackType = AttackType.Basic;
 
     #region Virtual Properties - Override in Character Children
@@ -121,6 +135,12 @@ public abstract class CharacterAttack : MonoBehaviour
             Debug.LogError("PlayerInput est manquant sur " + gameObject.name);
             return;
         }
+    }
+
+    private void Start()
+    {
+        _currentAudioClip = SFXList[1];
+        _audioSource.PlayOneShot(_currentAudioClip);
     }
 
     protected virtual void OnDisable()
@@ -218,6 +238,9 @@ public abstract class CharacterAttack : MonoBehaviour
     {
         canUseSkill = false;
 
+        _currentAudioClip = SFXList[3];
+        _audioSource.PlayOneShot(_currentAudioClip);
+
         yield return new WaitForSecondsRealtime(SkillRate);
 
         canUseSkill = true;
@@ -226,6 +249,9 @@ public abstract class CharacterAttack : MonoBehaviour
     public IEnumerator UseUlt()
     {
         canUseUltimate = false;
+
+        _currentAudioClip = SFXList[4];
+        _audioSource.PlayOneShot(_currentAudioClip);
 
         yield return new WaitForSecondsRealtime(UltimateRate);
 

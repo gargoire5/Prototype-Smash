@@ -36,6 +36,13 @@ public class MatchManager : MonoBehaviour
     public bool P1CanUlt;
     public bool P2CanUlt;
 
+    [SerializeField]
+    public List<AudioClip> musicList = new List<AudioClip>();
+
+    [SerializeField]
+    private AudioSource _audioSource;
+    private AudioClip _currentAudioClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +50,12 @@ public class MatchManager : MonoBehaviour
         _manager.SetManager(this);
 
         FindFirstObjectByType<UIManager>().SetManager(this);
+
+        int ID = Random.Range(0, musicList.Count);
+        _currentAudioClip = musicList[ID];
+        _audioSource.clip = _currentAudioClip;
+        _audioSource.Play();
+        _audioSource.loop = true;
     }
 
     // Update is called once per frame
@@ -62,9 +75,12 @@ public class MatchManager : MonoBehaviour
             _player1.transform.position = _player1Spawn.position;
             _player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
             _player1.GetComponent<DamageReceiver>().damagePercent = 0;
+
+            _manager.PlayDeathVoiceLine(_player1.GetComponent<CharacterAttack>().SFXList[2]);
         }
         else
         {
+            _manager.PlayDeathVoiceLine(_player1.GetComponent<CharacterAttack>().SFXList[2]);
             _manager.LosePlayer1();
         }
     }
@@ -77,9 +93,11 @@ public class MatchManager : MonoBehaviour
             _player2.transform.position = _player2Spawn.position;
             _player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
             _player2.GetComponent<DamageReceiver>().damagePercent = 0;
+            _manager.PlayDeathVoiceLine(_player2.GetComponent<CharacterAttack>().SFXList[2]);
         }
         else
         {
+            _manager.PlayDeathVoiceLine(_player2.GetComponent<CharacterAttack>().SFXList[2]);
             _manager.LosePlayer2();
         }
     }

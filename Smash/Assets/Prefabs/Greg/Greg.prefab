@@ -414,6 +414,7 @@ GameObject:
   - component: {fileID: 2672629927823219913}
   - component: {fileID: 778937200036509204}
   - component: {fileID: 4269347576444984314}
+  - component: {fileID: 2868399509981779207}
   m_Layer: 0
   m_Name: Greg
   m_TagString: Untagged
@@ -553,6 +554,7 @@ MonoBehaviour:
   heals: 0
   maxJump: 3
   numJump: 3
+  isMove: 1
   gravityMulti: 3
 --- !u!54 &2841578809573159004
 Rigidbody:
@@ -666,13 +668,20 @@ MonoBehaviour:
   ultimateRate: 40
   ultimateDamage: 0
   ultimateKnockback: 0
+  SFXList:
+  - {fileID: 8300000, guid: cbbea7d4c006cd542af4b8553deaef14, type: 3}
+  - {fileID: 8300000, guid: 8af5d05b3923a924db3cc55ada1b122e, type: 3}
+  - {fileID: 8300000, guid: c73b650be4658c14592bc2c3cd07828f, type: 3}
+  - {fileID: 8300000, guid: b687f7251b528e14ca1fa8328621fbf2, type: 3}
+  - {fileID: 8300000, guid: addd606b39d27e448b1d7a862731bab5, type: 3}
+  _audioSource: {fileID: 2868399509981779207}
   currentAttackType: 0
   ultObject: {fileID: 0}
   skillObject: {fileID: 7848658739997207965, guid: 5ac2cdf65c920fe418c13daf74b72e3a, type: 3}
   playerController: {fileID: 5236165098482649257}
   skybloxUlt: {fileID: 2100000, guid: 6d62e554ac5f11f4b84b731e8ca13195, type: 2}
   skybloxDefault: {fileID: 2100000, guid: d3d55b8c5a499a448bd50c609ad2392b, type: 2}
-  invincibleGreg: 0
+  invincibleGreg: 4
 --- !u!114 &4269347576444984314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,6 +696,103 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePercent: 0
   knockbackMultiplier: 1.5
+--- !u!82 &2868399509981779207
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8024985193415563486}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -77865545049519324, guid: bb312e943eda12d4e915d6aa4414fce1, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8789554261654974535
 GameObject:
   m_ObjectHideFlags: 0

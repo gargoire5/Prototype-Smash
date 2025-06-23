@@ -101,7 +101,7 @@ public class UIManager : MonoBehaviour
             else
                 _p1UltImage.color = Color.white;
 
-            if (_matchManager.P1CanSkill)
+            if (_matchManager.P2CanUlt)
                 _p2UltImage.color = blueish;
             else
                 _p2UltImage.color = Color.white;
