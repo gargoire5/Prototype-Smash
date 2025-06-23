@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public int maxJump = 3;
     public int numJump = 3;
     private float lastDirc;
+    public bool isMove = true;
 
     public float gravityMulti = 3f;
 
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
         Vector3 extraGravity = Physics.gravity * (gravityMulti - 1f);
         rb.AddForce(extraGravity, ForceMode.Acceleration);
 
-        if (_areInputsSet)
+        if (_areInputsSet && isMove)
             MovePlayer();
     }
 
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (numJump > 0)
+        if (numJump > 0 && isMove)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
