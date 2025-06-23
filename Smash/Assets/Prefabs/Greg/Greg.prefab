@@ -553,6 +553,7 @@ MonoBehaviour:
   heals: 0
   maxJump: 3
   numJump: 3
+  isMove: 1
   gravityMulti: 3
 --- !u!54 &2841578809573159004
 Rigidbody:
@@ -672,7 +673,7 @@ MonoBehaviour:
   playerController: {fileID: 5236165098482649257}
   skybloxUlt: {fileID: 2100000, guid: 6d62e554ac5f11f4b84b731e8ca13195, type: 2}
   skybloxDefault: {fileID: 2100000, guid: d3d55b8c5a499a448bd50c609ad2392b, type: 2}
-  invincibleGreg: 0
+  invincibleGreg: 4
 --- !u!114 &4269347576444984314
 MonoBehaviour:
   m_ObjectHideFlags: 0
