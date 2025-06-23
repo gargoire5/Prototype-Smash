@@ -6,6 +6,7 @@ public class DamageReceiver : MonoBehaviour
     public float damagePercent = 0f;
     public float knockbackMultiplier = 1.5f;
     private Rigidbody rb;
+    public bool isCounter = false;
 
     private void Awake()
     {

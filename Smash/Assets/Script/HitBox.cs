@@ -51,8 +51,14 @@ public class Hitbox : MonoBehaviour
 
         if (direction == Vector3.zero)
             direction = (other.transform.position - owner.transform.position).normalized;
-
-        receiver.TakeDamage(actualDamage, direction * knockbackForce);
+        if (receiver.isCounter)
+        {
+            GetComponent<DamageReceiver>().TakeDamage(actualDamage * 2, -direction * knockbackForce);
+        } 
+        else
+        {
+            receiver.TakeDamage(actualDamage, direction * knockbackForce);
+        }
         Debug.Log($"{owner.name} inflige {actualDamage} dmg et {knockbackForce} knockback à {other.name}");
 
         /*
