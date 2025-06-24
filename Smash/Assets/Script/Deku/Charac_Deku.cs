@@ -9,7 +9,6 @@ public class Charac_Deku : CharacterAttack
     protected override void BasicAttack()
     {
         base.BasicAttack();
-        Debug.Log("BasicAttack bleb");
     }
 
     protected override void ChargeAttack()

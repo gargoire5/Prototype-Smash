@@ -29,6 +29,11 @@ public class Hitbox : MonoBehaviour
             float actualDamage = damage;
             float knockbackForce = 0f;
 
+            if (receiver.isCounter)
+            {
+                GetComponent<DamageReceiver>().TakeDamage(actualDamage * 2, -direction * knockbackForce);
+            }
+
             switch (owner.currentAttackType)
             {
                 case AttackType.Basic:
@@ -56,9 +61,6 @@ public class Hitbox : MonoBehaviour
         {
             receiver1.BounceWall(transform.parent.GetComponent<Rigidbody>(), gameObject.name);
         }
-
-
-
 
         /*
         if (owner.currentAttackType == AttackType.Skill && owner is Player1 p1 && p1.IsDashing())
