@@ -23,37 +23,42 @@ public class Hitbox : MonoBehaviour
             return;
         }
 
-        if (!other.TryGetComponent(out DamageReceiver receiver))
+        if (other.TryGetComponent(out DamageReceiver receiver))
         {
-            Debug.Log("Pas de receiver");
-            return;
+            // Dégâts dynamiques selon le type d’attaque
+            float actualDamage = damage;
+            float knockbackForce = 0f;
+
+            switch (owner.currentAttackType)
+            {
+                case AttackType.Basic:
+                    actualDamage = owner.BasicDamage;
+                    knockbackForce = owner.BasicKnockback;
+                    break;
+                case AttackType.Skill:
+                    actualDamage = owner.SkillDamage;
+                    knockbackForce = owner.SkillKnockback;
+                    break;
+                case AttackType.Ultimate:
+                    actualDamage = owner.UltimateDamage;
+                    knockbackForce = owner.UltimateKnockback;
+                    break;
+            }
+
+            if (direction == Vector3.zero)
+                direction = (other.transform.position - owner.transform.position).normalized;
+
+            receiver.TakeDamage(actualDamage, direction * knockbackForce);
+            Debug.Log($"{owner.name} inflige {actualDamage} dmg et {knockbackForce} knockback à {other.name}");
         }
 
-        // Dégâts dynamiques selon le type d’attaque
-        float actualDamage = damage;
-        float knockbackForce = 0f;
-
-        switch (owner.currentAttackType)
+        else if (other.TryGetComponent(out WallReceiver receiver1))
         {
-            case AttackType.Basic:
-                actualDamage = owner.BasicDamage;
-                knockbackForce = owner.BasicKnockback;
-                break;
-            case AttackType.Skill:
-                actualDamage = owner.SkillDamage;
-                knockbackForce = owner.SkillKnockback;
-                break;
-            case AttackType.Ultimate:
-                actualDamage = owner.UltimateDamage;
-                knockbackForce = owner.UltimateKnockback;
-                break;
+            receiver1.BounceWall(transform.parent.GetComponent<Rigidbody>(), gameObject.name);
         }
 
-        if (direction == Vector3.zero)
-            direction = (other.transform.position - owner.transform.position).normalized;
 
-        receiver.TakeDamage(actualDamage, direction * knockbackForce);
-        Debug.Log($"{owner.name} inflige {actualDamage} dmg et {knockbackForce} knockback à {other.name}");
+
 
         /*
         if (owner.currentAttackType == AttackType.Skill && owner is Player1 p1 && p1.IsDashing())
