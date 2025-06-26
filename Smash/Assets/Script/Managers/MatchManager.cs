@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MatchManager : MonoBehaviour
 {
@@ -22,7 +24,7 @@ public class MatchManager : MonoBehaviour
     [SerializeField]
     private Transform _player2Spawn;
 
-    private SmashGameManager _manager;
+    private SmashGameManager _manager = null;
 
     public InputActionAsset Player1Input;
     public InputActionAsset Player2Input;
@@ -47,24 +49,35 @@ public class MatchManager : MonoBehaviour
     void Start()
     {
         _manager = FindFirstObjectByType<SmashGameManager>();
-        _manager.SetManager(this);
+        if (_manager == null)
+        {
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            return;
+        }
+        else
+        {
+            _manager.SetManager(this);
 
-        FindFirstObjectByType<UIManager>().SetManager(this);
+            FindFirstObjectByType<UIManager>().SetManager(this);
 
-        int ID = Random.Range(0, musicList.Count);
-        _currentAudioClip = musicList[ID];
-        _audioSource.clip = _currentAudioClip;
-        _audioSource.Play();
-        _audioSource.loop = true;
+            int ID = Random.Range(0, musicList.Count);
+            _currentAudioClip = musicList[ID];
+            _audioSource.clip = _currentAudioClip;
+            _audioSource.Play();
+            _audioSource.loop = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        P1CanSkill = Player1Character.canUseSkill;
-        P2CanSkill = Player2Character.canUseSkill;
-        P1CanUlt = Player1Character.canUseUltimate;
-        P2CanUlt = Player2Character.canUseUltimate;
+        if (_manager != null)
+        {
+            P1CanSkill = Player1Character.canUseSkill;
+            P2CanSkill = Player2Character.canUseSkill;
+            P1CanUlt = Player1Character.canUseUltimate;
+            P2CanUlt = Player2Character.canUseUltimate;
+        }
     }
 
     private void Player1Death()

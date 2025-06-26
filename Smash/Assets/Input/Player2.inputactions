@@ -269,6 +269,17 @@
                     "action": "Parade",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d9192fa-fc44-4d4c-81df-2fb03db95d35",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Parade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
