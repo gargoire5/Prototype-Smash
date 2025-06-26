@@ -21,7 +21,9 @@ public abstract class CharacterAttack : MonoBehaviour
     protected InputAction moveAction;
     public InputAction jumpAction;
 
-    private bool _areInputsSet = false;
+    private PlayerController _pc = null;
+
+    private bool _areInputsSet = false; 
 
     protected float basicAttackCooldown;
 
@@ -141,6 +143,8 @@ public abstract class CharacterAttack : MonoBehaviour
     {
         _currentAudioClip = SFXList[1];
         _audioSource.PlayOneShot(_currentAudioClip);
+
+        _pc = GetComponent<PlayerController>();
     }
 
     protected virtual void OnDisable()
@@ -170,31 +174,23 @@ public abstract class CharacterAttack : MonoBehaviour
                 else
                     selectedHitbox = hitboxLeft;
             }
-
-            if (isHoldingAttack)
-            {
-                holdTime += Time.deltaTime;
-
-                if (holdTime < chargeTimeTreshold && Time.time >= basicAttackCooldown)
-                {
-                    basicAttackCooldown = Time.time + BasicRate;
-                    BasicAttack();
-                }
-            }
         }
     }
 
     protected virtual void BasicAttack()
     {
-        currentAttackType = AttackType.Basic;
+        if (_pc.isMove)
+        {
+            currentAttackType = AttackType.Basic;
 
-        if (jumpAction.IsPressed())
-            selectedHitbox = hitboxUp;
-        else if (lastMoveDirection.x > 0)
-            selectedHitbox = hitboxRight;
-        else
-            selectedHitbox = hitboxLeft;
-        StartCoroutine(ActivateHitboxCollider(selectedHitbox));
+            if (jumpAction.IsPressed())
+                selectedHitbox = hitboxUp;
+            else if (lastMoveDirection.x > 0)
+                selectedHitbox = hitboxRight;
+            else
+                selectedHitbox = hitboxLeft;
+            StartCoroutine(ActivateHitboxCollider(selectedHitbox));
+        }
     }
 
     public IEnumerator ActivateHitboxCollider(GameObject hitbox)
@@ -261,7 +257,7 @@ public abstract class CharacterAttack : MonoBehaviour
     protected abstract void ChargeAttack();
     protected virtual void SkillAttack()
     {
-        if (!canUseSkill)
+        if (!canUseSkill || !_pc.isMove)
             return;
 
         currentAttackType = AttackType.Skill;
@@ -269,6 +265,9 @@ public abstract class CharacterAttack : MonoBehaviour
     }
     protected virtual void UltimateAttack()
     {
+        if (!_pc.isMove)
+            return;
+
         currentAttackType = AttackType.Ultimate;
         StartCoroutine(UseUlt());
     }
