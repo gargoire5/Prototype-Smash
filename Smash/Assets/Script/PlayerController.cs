@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     public InputAction MoveAction;
     public InputAction JumpAction;
+    public InputAction ParadeAction;
 
     private bool _areInputsSet = false;
 
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float moveForce = 10f;
 
     public Rigidbody rb;
+    public DamageReceiver dr;
 
     public Vector2 inputDirection;
 
@@ -27,8 +29,12 @@ public class PlayerController : MonoBehaviour
 
     public int maxJump = 3;
     public int numJump = 3;
+
     private float lastDirc;
+
     public bool isMove = true;
+    public bool IsGrounded = false;
+    public bool HasFastFallen = false;
 
     public float gravityMulti = 3f;
 
@@ -36,12 +42,15 @@ public class PlayerController : MonoBehaviour
     {
         MoveAction.Enable();
         JumpAction.Enable();
+        ParadeAction.Enable();
         heals = maxHeals;
+
+        dr = GetComponent<DamageReceiver>();
     }
 
     private void Awake()
     {
-        //JumpAction.started += Jump;
+
     }
 
 
@@ -55,6 +64,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 extraGravity = Physics.gravity * (gravityMulti - 1f);
         rb.AddForce(extraGravity, ForceMode.Acceleration);
+
+        isMove = !dr.isBlocking;
 
         if (_areInputsSet && isMove)
             MovePlayer();
@@ -89,6 +100,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Parade(InputAction.CallbackContext obj)
+    {
+        if (IsGrounded == false)
+        {
+            if (HasFastFallen == false)
+            {
+                rb.AddForce(Vector3.up * -bounceForce * 2, ForceMode.Impulse);
+                HasFastFallen = true;
+            }
+        }
+        else
+        {
+            dr.Parade();
+        }
+    }
+
+    void StopParade(InputAction.CallbackContext obj)
+    {
+        if (IsGrounded == true)
+        {
+            dr.StopParade(); 
+        }
+    }
+
     public void SetupInputActions(InputActionAsset playerInputToSet)
     {
         var actions = playerInputToSet;
@@ -97,8 +132,12 @@ public class PlayerController : MonoBehaviour
 
         MoveAction = actions["Move"];
         JumpAction = actions["Jump"];
+        ParadeAction = actions["Parade"];
 
         JumpAction.started += Jump;
+        ParadeAction.performed += Parade;
+        ParadeAction.canceled += StopParade;
+
         _areInputsSet = true;
 
         gameObject.GetComponent<CharacterAttack>().SetupInputActions(playerInputToSet);
