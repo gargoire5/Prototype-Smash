@@ -61,7 +61,7 @@ public class DamageReceiver : MonoBehaviour
         }
         else
         {
-            _paradeTime -= amount / 10;
+            _paradeTime -= amount / 7;
         }
     }
 

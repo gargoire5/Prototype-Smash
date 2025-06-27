@@ -13,11 +13,11 @@ public class WallReceiver : MonoBehaviour
 
         if (hitboxName == "BoxCollisionR" || hitboxName == "BoxCollisionL")
         {
-            bounceForce.z = BounceFactor;
+            bounceForce.z = BounceFactor * 10;
 
             if (playerVel.y > 1 || playerVel.y < 1)
             {
-                bounceForce.y = playerVel.y;
+                bounceForce.y = playerVel.y/2;
             }
 
             if (hitboxName == "BoxCollisionR")
@@ -26,14 +26,14 @@ public class WallReceiver : MonoBehaviour
 
         else
         {
-            bounceForce.y = BounceFactor;
+            bounceForce.y = BounceFactor * 10;
 
             if (playerVel.z > 1 || playerVel.z < 1)
             {
-                bounceForce.z = playerVel.z;
+                bounceForce.z = playerVel.z / 2;
             }
 
-            if (hitboxName == "BoxCollisionUp")
+            if (hitboxName == "BoxCollisionR")
                 bounceForce.y *= -1;
         }
 

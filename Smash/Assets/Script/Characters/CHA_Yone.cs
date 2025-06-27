@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CHA_Yone : CharacterAttack
@@ -19,12 +20,12 @@ public class CHA_Yone : CharacterAttack
     protected override void ChargeAttack()
     {
         Debug.Log("ChargeAttack");
-
+        
     }
 
     protected override void SkillAttack()
     {
-        if (!canUseSkill)
+        if (!canUseSkill || _pc.isMove == false)
             return;
 
         currentAttackType = AttackType.Skill;
@@ -60,14 +61,16 @@ public class CHA_Yone : CharacterAttack
 
     protected override void UltimateAttack()
     {
-
-        Debug.Log("Ult lancé");
-        /*if (!canUseUltimate)
-            return;*/
-        canUseUltimate = true;
-        currentAttackType = AttackType.Ultimate;
-        Debug.Log("Ult lancé");
-        StartCoroutine(UltimateAreaDamage());
+        if (_pc.isMove)
+        {
+            Debug.Log("Ult lancé");
+            /*if (!canUseUltimate)
+                return;*/
+            canUseUltimate = true;
+            currentAttackType = AttackType.Ultimate;
+            Debug.Log("Ult lancé");
+            StartCoroutine(UltimateAreaDamage());
+        }
     }
 
     private IEnumerator UltimateAreaDamage()

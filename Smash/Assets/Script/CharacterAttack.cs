@@ -21,7 +21,7 @@ public abstract class CharacterAttack : MonoBehaviour
     protected InputAction moveAction;
     public InputAction jumpAction;
 
-    private PlayerController _pc = null;
+    protected PlayerController _pc = null;
 
     private bool _areInputsSet = false; 
 
@@ -257,7 +257,7 @@ public abstract class CharacterAttack : MonoBehaviour
     protected abstract void ChargeAttack();
     protected virtual void SkillAttack()
     {
-        if (!canUseSkill || !_pc.isMove)
+        if (!canUseSkill || _pc.isMove == false)
             return;
 
         currentAttackType = AttackType.Skill;

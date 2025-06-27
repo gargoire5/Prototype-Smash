@@ -59,7 +59,11 @@ public class Hitbox : MonoBehaviour
 
         else if (other.TryGetComponent(out WallReceiver receiver1))
         {
-            receiver1.BounceWall(transform.parent.GetComponent<Rigidbody>(), gameObject.name);
+            if (transform.parent != null)
+            {
+                if (transform.parent.TryGetComponent<Rigidbody>(out Rigidbody currentRb))
+                    receiver1.BounceWall(currentRb, gameObject.name);
+            }
         }
 
         /*
